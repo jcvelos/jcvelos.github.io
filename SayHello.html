@@ -1,0 +1,33 @@
+ <html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Blank template</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+        <label for="fname">What is your name:</label><br>
+         <input type="text" id="fname"><br>
+        <button onclick="sayhello()">Click Me For a Suprise</button>
+        <br>
+            <h2 id="MSG"></h2>
+        <br>
+        <a href="index.html">Back to Home Page</a>
+        <br>
+        <script>
+        function sayhello()
+        {
+            var name;
+
+            name = document.getElementById("fname").value;
+            document.getElementById("MSG").innerHTML='Dissapear among the sea of butterflies, ' +name;
+        }
+
+        </script>
+    </body>
+
+</html> 

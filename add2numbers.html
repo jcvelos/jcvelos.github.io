@@ -1,0 +1,40 @@
+<html>
+    <style>
+        #h1 {
+        background: linear-gradient (to right, black, black, maroon, pink);
+        padding: 10px;
+        z-index: 3;
+        }
+    </style>
+    <body>
+        <h1 id="h1">Add 2 numbers</h1>
+        <br>
+        <p1>
+        <label for="n1">Type your 1st number:</label>
+        <input id="n1" name="n1" type="number" onkeyup="computesum()">
+        <label for="n2">Type your 2nd number:</label>
+        <input id="n2" name="n2" type="number" onkeyup="computesum()">
+        <br><br>
+        </p>
+        <label for="sum" id="sumlabel">The sum is:</label>  
+        <input id="sum" name="sum" type="number" readonly></input></p>
+        <br>
+        <br>
+        <a href="index.html">Back to Home Page</a>
+        <script>
+        function computesum(){
+        var x1,x2;
+
+        x1 = document.getElementById("n1").value*1;
+        x2 = document.getElementById("n2").value*1;
+
+        let x3 = x1+x2;
+
+        document.getElementById("sumlabel").innerHTML
+            = 'The sum of '+x1+' and '+x2+' is:';
+        document.getElementById("sum").value = x3;
+        }
+        </script>
+    </body>
+
+</html> 

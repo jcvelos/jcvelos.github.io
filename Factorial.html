@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Operations</title>
+</head>
+<body>
+    <h1>Number Operations</h1>
+
+    <label for="inputNumber">Enter a number:</label>
+    <input type="number" id="inputNumber">
+
+    <button onclick="calculate()">Calculate</button>
+    <button onclick="clearValues()">Clear</button>
+
+    <p>Factorial of <span id="factorial"></span></p>
+    <p>Sum of the first <span id="sum"></span> numbers</p>
+    <p>Average of the first <span id="average"></span> numbers</p>
+
+    <br><br>
+    <a href="index.html">Back to Home Page</a> or
+    <a href="Home_Web.html"> To the Cooler Website</a>
+
+    <script>
+        function calculate() {
+            const n = parseInt(document.getElementById("inputNumber").value);
+
+            // Calculate nth factorial using a while loop
+            let factorial = 1;
+            let i = 1;
+            while (i <= n) {
+                factorial *= i;
+                i++;
+            }
+            document.getElementById("factorial").innerText = `${n}! = ${factorial}`;
+
+            // Calculate sum of first n numbers using a do-while loop
+            let sum = 0;
+            let j = 1;
+            do {
+                sum += j;
+                j++;
+            } while (j <= n);
+            document.getElementById("sum").innerText = sum;
+
+            // Calculate average of first n numbers using a for loop
+            let total = 0;
+            for (let k = 1; k <= n; k++) {
+                total += k;
+            }
+            const average = total / n;
+            document.getElementById("average").innerText = average;
+        }
+
+        function clearValues() {
+            document.getElementById("inputNumber").value = ""; // Clear input field
+            document.getElementById("factorial").innerText = ""; // Clear factorial value
+            document.getElementById("sum").innerText = ""; // Clear sum value
+            document.getElementById("average").innerText = ""; // Clear average value
+        }
+    </script>
+</body>
+</html>

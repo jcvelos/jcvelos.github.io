@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Converter</title>
+</head>
+<body>
+    <h1>Length Converter</h1>
+
+    <label for="fromUnit">Convert:</label>
+    <select id="fromUnit">
+        <option value="metersToFeet">Meters to Feet</option>
+        <option value="feetToMeters">Feet to Meters</option>
+    </select>
+
+    <br><br>
+
+    <label for="inputValue">Enter Value:</label>
+    <input type="number" id="inputValue">
+
+    <button onclick="convertLength()">Convert</button>
+    <button onclick="removeInputLength()">Clear</button>
+
+    <br><br>
+
+    <label for="result">Result:</label>
+    <span id="result"></span></p>
+
+
+    <br><br>
+    <script>
+        function convertLength() {
+            var fromUnit = document.getElementById("fromUnit").value;
+            var inputValue = parseFloat(document.getElementById("inputValue").value);
+            var result = document.getElementById("result");
+
+            if (fromUnit === "metersToFeet") {
+                var feet = inputValue * 3.28084;
+                result.innerHTML = feet + " ft";
+            } else if (fromUnit === "feetToMeters") {
+                var meters = inputValue * 0.3048;
+                result.innerHTML = meters + " m";
+            } else {
+                result.innerHTML = "Please select conversion type.";
+            }
+        }
+
+        function removeInputLength() {
+            document.getElementById("inputValue").value = ""; // Clear the input value
+            document.getElementById("result").innerHTML = ""; // Clear the result value
+        }
+    </script>
+
+    <h1>Temperature Converter</h1>
+
+    <label for="fromUnit1">Convert:</label>
+    <select id="fromUnit1">
+        <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+        <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+    </select>
+
+    <br><br>
+
+    <label for="inputValue1">Enter Value:</label>
+    <input type="number" id="inputValue1">
+
+    <button onclick="convertTemperature()">Convert</button>
+    <button onclick="removeInputTemperature()">Clear</button>
+
+    <br><br>
+
+    <label for="result1">Result:</label>
+    <span id="result1"></span></p>
+    
+    <br><br>
+    <a href="index.html">Back to Home Page</a> or
+    <a href="Home_Web.html"> To the Cooler Website</a>
+
+    <script>
+        function convertTemperature() {
+            var fromUnit1 = document.getElementById("fromUnit1").value;
+            var inputValue1 = parseFloat(document.getElementById("inputValue1").value);
+            var result1 = document.getElementById("result1");
+
+            if (fromUnit1 === "celsiusToFahrenheit") {
+                var fahrenheit = (inputValue1 * 9 / 5) + 32;
+                result1.innerHTML = fahrenheit + "&deg;F";
+            } else if (fromUnit1 === "fahrenheitToCelsius") {
+                var celsius = (inputValue1 - 32) * 5 / 9;
+                result1.innerHTML = celsius + "&deg;C";
+            } else {
+                result1.innerHTML = "Please select conversion type.";
+            }
+        }
+
+        function removeInputTemperature() {
+            document.getElementById("inputValue1").value = ""; // Clear the input value
+            document.getElementById("result1").innerHTML = ""; // Clear the result value
+        }
+    </script>
+</body>
+</html>
