@@ -7,7 +7,7 @@
     <h1>Income Tax Calculator</h1>
 
     <label for="inputIncome">Enter Taxable Income:</label>
-    <input type="number" id="inputIncome" placeholder="Enter income">
+    <input type="number" id="inputIncome" placeholder="Enter income" dir="rtl">
 
     <button onclick="calculateIncomeTax()">Calculate Tax</button>
     <button onclick="removeInput()">Clear</button>
@@ -15,11 +15,11 @@
     <br><br>
 
     <label for="result">Income Tax:</label>
-    <input id="result" name="result" type="number" readonly></input></p>
+    <input id="result" name="result" type="text" dir="rtl" readonly></input></p>
 
     <br><br>
     <a href="index.html">Back to Home Page</a> or
-    <a href="Home_Web.html"> To the Cooler Website</a>
+    <a href="Home_Web.html">To the Cooler Website</a>
     
     <script>
         function calculateIncomeTax() {
@@ -28,20 +28,20 @@
             var incomeTax = 0;
 
             if (inputIncome <= 250000) {
-                incomeTax = 0;
+                incomeTax = "PHP 0";
             } else if (inputIncome <= 400000) {
-                incomeTax = (inputIncome - 250000) * 0.20;
+                incomeTax = "PHP " + ((inputIncome - 250000) * 0.20).toFixed(2);
             } else if (inputIncome <= 800000) {
-                incomeTax = (inputIncome - 400000) * 0.25 + 30000;
+                incomeTax = "PHP " + ((inputIncome - 400000) * 0.25 + 30000).toFixed(2);
             } else if (inputIncome <= 2000000) {
-                incomeTax = (inputIncome - 800000) * 0.30 + 130000;
+                incomeTax = "PHP " + ((inputIncome - 800000) * 0.30 + 130000).toFixed(2);
             } else if (inputIncome <= 8000000) {
-                incomeTax = (inputIncome - 2000000) * 0.32 + 490000;
+                incomeTax = "PHP " + ((inputIncome - 2000000) * 0.32 + 490000).toFixed(2);
             } else {
-                incomeTax = (inputIncome - 8000000) * 0.35 + 2410000;
+                incomeTax = "PHP " + ((inputIncome - 8000000) * 0.35 + 2410000).toFixed(2);
             }
-
-            result.value = incomeTax.toFixed(2); // Set the value of the input field with the calculated income tax
+            
+            result.value = incomeTax; // Set the value of the input field with the calculated income tax
         }
 
         function removeInput() {
