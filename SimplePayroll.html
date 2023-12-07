@@ -8,13 +8,28 @@
         padding: 0;
         height: 100%;
         color: pink;
-    }
+        }
 
     body {
         background-image: url("Forest.png");
         background-size: cover;
         background-position: center;
-    }
+        }
+
+   button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+    button:hover {
+        background: linear-gradient(to right, violet, pink);   
+        }
 
     #title {
         text-align: center;
@@ -24,30 +39,29 @@
         }
 
     table {
-            width: 90%;
-            border-collapse: collapse; /* Remove default cell spacing */ /* Adjust margin as needed */
-            margin-left: 60px;
+        width: 90%;
+        border-collapse: collapse; 
+        margin-left: 60px;
         }
 
         th, td {
-        border: 2px solid indigo; /* Border style for table cells */
-        padding: 8px; /* Cell padding */
-        text-align: left; /* Adjust text alignment */
+        border: 2px solid indigo; 
+        padding: 8px; 
+        text-align: left; 
         }
 
          th {
-        background-color: rgba(238, 130, 238, 0.5); /* Adjust the alpha value for opacity */
-        color: pink; /* Header text color */
+        background-color: rgba(238, 130, 238, 0.5); 
+        color: pink; 
         }
 
-        /* Additional styles for the link */
         a {
-            color: pink; /* Set link text color */
-            text-decoration: none; /* Remove underline */
+            color: pink; 
+            text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline; /* Add underline on hover */
+            text-decoration: underline; 
         }
 
     </style>
@@ -60,17 +74,17 @@
     <input type="text" id="employeeName">
 
     <label for="daysWorked">Days Worked:</label>
-    <input type="number" id="daysWorked">
+    <input type="number" id="daysWorked" dir="rtl">
 
     <label for="dailyRate">Daily Rate:</label>
-    <input type="number" id="dailyRate">
+    <input type="number" id="dailyRate" dir="rtl">
 
     <label for="deductionAmount">Deduction Amount:</label>
-    <input type="number" id="deductionAmount">
+    <input type="number" id="deductionAmount" dir="rtl">
 
-    <button onclick="addEmployee()">Add Employee</button>
-    <button onclick="deleteEmployee()">Delete Employee</button>
-    <button onclick="clearAllEmployees()">Clear All Employees</button>
+    <button onclick="addEmployee()" display="block">Add Employee</button>
+    <button onclick="deleteEmployee() "display="inline-block">Delete Employee</button>
+    <button onclick="clearAllEmployees()" display="inline-block">Clear All Employees</button>
 
     <br><br><br>
 
@@ -99,11 +113,11 @@
         function addEmployee() {
             const employeeName = document.getElementById("employeeName").value;
             const daysWorked = parseInt(document.getElementById("daysWorked").value);
-            const dailyRate = parseFloat(document.getElementById("dailyRate").value);
-            const deductionAmount = parseFloat(document.getElementById("deductionAmount").value);
+            const dailyRate = parseFloat(document.getElementById("dailyRate").value).toFixed(2); // Format to 2 decimal places
+            const deductionAmount = parseFloat(document.getElementById("deductionAmount").value).toFixed(2); // Format to 2 decimal places
 
-            const grossPay = daysWorked * dailyRate;
-            const netPay = grossPay - deductionAmount;
+            const grossPay = (daysWorked * dailyRate).toFixed(2); // Format to 2 decimal places
+            const netPay = (grossPay - deductionAmount).toFixed(2); // Format to 2 decimal places
 
             const employee = {
                 employeeName,
@@ -129,8 +143,12 @@
         }
 
         function clearAllEmployees() {
-            payrollList = []; // Reset the payrollList array
-            displayPayroll(); // Clear the displayed table
+            const confirmation = confirm("Are you sure you want to clear the table?");
+
+            if (confirmation) {
+                payrollList = []; // Reset the payrollList array
+                displayPayroll(); // Clear the displayed table
+            }
         }
 
         function displayPayroll() {
@@ -150,10 +168,10 @@
                 rowNum.innerHTML = index + 1;
                 nameCell.innerHTML = employee.employeeName;
                 daysWorkedCell.innerHTML = employee.daysWorked;
-                dailyRateCell.innerHTML = employee.dailyRate;
-                grossPayCell.innerHTML = employee.grossPay;
-                deductionAmountCell.innerHTML = employee.deductionAmount;
-                netPayCell.innerHTML = employee.netPay;
+                dailyRateCell.innerHTML = "\u20B1  " + employee.dailyRate;
+                grossPayCell.innerHTML = "\u20B1  " + employee.grossPay;
+                deductionAmountCell.innerHTML = "\u20B1  " + employee.deductionAmount;
+                netPayCell.innerHTML = "\u20B1  " + employee.netPay;
             });
         }
     </script>
