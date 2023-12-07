@@ -2,6 +2,16 @@
 <html>
 <head>
     <title>Length Converter</title>
+    <style>
+        .result-box {
+            position: absolute; /* Keeps the box in a fixed position */
+            display: inline-block;
+            border: 1px solid grey;
+            text-align: right; /* Align text to the right */
+            height: 20px;
+            width: 150px;
+        }
+    </style>
 </head>
 <body>
     <h1>Length Converter</h1>
@@ -13,34 +23,32 @@
     </select>
 
     <br><br>
-
     <label for="inputValue">Enter Value:</label>
-    <input type="number" id="inputValue">
+    <input type="number" id="inputValue" step="1" dir="rtl">
 
     <button onclick="convertLength()">Convert</button>
     <button onclick="removeInput()">Clear</button>
 
     <br><br>
-
-    <label for="result">Result:</label>
-    <span id="result"></span></p>
-
+    <label for="result1">Result:</label>
+    <div class="result-box" id="result1"></div><!-- Result displayed in a box -->
 
     <br><br>
     <a href="index.html">Back to Home Page</a> or
     <a href="Home_Web.html"> To the Cooler Website</a>
+
     <script>
         function convertLength() {
             var fromUnit = document.getElementById("fromUnit").value;
-            var inputValue = parseFloat(document.getElementById("inputValue").value);
-            var result = document.getElementById("result");
+            var inputValue = parseInt(document.getElementById("inputValue").value); // Parse to integer
+            var result = document.getElementById("result1");
 
             if (fromUnit === "metersToFeet") {
                 var feet = inputValue * 3.28084;
-                result.innerHTML = feet + " ft";
+                result.innerHTML = Math.round(feet) + " ft"; // Display rounded to nearest integer
             } else if (fromUnit === "feetToMeters") {
                 var meters = inputValue * 0.3048;
-                result.innerHTML = meters + " m";
+                result.innerHTML = Math.round(meters) + " m"; // Display rounded to nearest integer
             } else {
                 result.innerHTML = "Please select conversion type.";
             }
@@ -48,8 +56,9 @@
 
         function removeInput() {
             document.getElementById("inputValue").value = ""; // Clear the input value
-            document.getElementById("result").innerHTML = ""; // Clear the result value
+            document.getElementById("result1").innerHTML = ""; // Clear the result value
         }
     </script>
 </body>
 </html>
+
