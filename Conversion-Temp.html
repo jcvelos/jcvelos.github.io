@@ -1,8 +1,18 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>Temperature Converter</title>
 </head>
+<style>
+    .result-box {
+        position: fixed;
+        display: inline-block;
+        border: 1px solid grey;
+        height: 20px;
+        width: 150px;
+        text-align: right; /* Align text to the right */
+        margin-left: 3px;
+    }
+</style>
 <body>
     <h1>Temperature Converter</h1>
 
@@ -15,7 +25,7 @@
     <br><br>
 
     <label for="inputValue1">Enter Value:</label>
-    <input type="number" id="inputValue1">
+    <input type="number" id="inputValue1" step="1" dir="rtl">
 
     <button onclick="convertTemperature()">Convert</button>
     <button onclick="removeInput()">Clear</button>
@@ -23,23 +33,23 @@
     <br><br>
 
     <label for="result1">Result:</label>
-    <span id="result1"></span></p>
-    
+    <div class="result-box" id="result1"></div> <!-- Result displayed in a box -->
+
     <br><br>
     <a href="index.html">Back to Home Page</a> or
     <a href="Home_Web.html"> To the Cooler Website</a>
     <script>
         function convertTemperature() {
             var fromUnit1 = document.getElementById("fromUnit1").value;
-            var inputValue1 = parseFloat(document.getElementById("inputValue1").value);
+            var inputValue1 = parseInt(document.getElementById("inputValue1").value); // Parse to integer
             var result1 = document.getElementById("result1");
 
             if (fromUnit1 === "celsiusToFahrenheit") {
                 var fahrenheit = (inputValue1 * 9 / 5) + 32;
-                result1.innerHTML = fahrenheit + "&deg;F";
+                result1.innerHTML = Math.round(fahrenheit) + " &deg;F"; // Display as integer
             } else if (fromUnit1 === "fahrenheitToCelsius") {
                 var celsius = (inputValue1 - 32) * 5 / 9;
-                result1.innerHTML = celsius + "&deg;C";
+                result1.innerHTML = Math.round(celsius) + " &deg;C"; // Display as integer
             } else {
                 result1.innerHTML = "Please select conversion type.";
             }
