@@ -1,33 +1,100 @@
- <html>
-    <head>
-        <meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Say Hello</title>
+    <style>
+        body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        color: pink;
+    }
 
-        <title>Blank template</title>
+        body {
+        background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+        background-size: cover;
+        background-position: center;
+    }
 
-        <!-- Load external CSS styles -->
-        <link rel="stylesheet" href="styles.css">
-
-    </head>
-
-    <body>
-        <label for="fname">What is your name:</label><br>
-         <input type="text" id="fname"><br>
-        <button onclick="sayhello()">Click Me For a Suprise</button>
-        <br>
-            <h2 id="MSG"></h2>
-        <br>
-        <a href="index.html">Back to Home Page</a>
-        <br>
-        <script>
-        function sayhello()
-        {
-            var name;
-
-            name = document.getElementById("fname").value;
-            document.getElementById("MSG").innerHTML='Dissapear among the sea of butterflies, ' +name;
+        .door-frame {
+            margin: auto;
+            translate: 0 150%;
+            border: 5px solid pink;
+            padding: 20px;
+            background-color: ;
+            text-align: center;
+            width: 300px;
+            height: 200px;
         }
 
-        </script>
-    </body>
+        .header {
+            background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
+            background-size: 800% 100%;
+            background-position: right;
+            position: relative;
+            text-align: center;
+            color: black;
+            margin-bottom: 30px;
+            animation: wave 20s infinite linear;
+        }
 
-</html> 
+        @keyframes wave {
+            0% {
+                background-position: right;
+            }
+            100% {
+                background-position: left;
+            }
+        }
+
+        .header h1 {
+            margin-top: 0;
+            padding: 5px 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, violet, pink);
+        }
+
+        a {
+            color: pink;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Say Hello</h1>
+    </div>
+    <div class="door-frame">
+        <label for="fname">What is your name:</label><br>
+        <input type="text" id="fname"><br>
+        <button onclick="sayhello()">Click Me For a Surprise</button>
+    </div>
+    <br><br>
+    <a href="index.html">Back to Home Page</a> or
+    <a href="Home_Web.html">To the Cooler Website</a>
+    <br>
+    <script>
+        function sayhello() {
+            var name = document.getElementById("fname").value;
+            document.getElementById("MSG").innerHTML = 'Disappear among the sea of butterflies, ' + name;
+        }
+    </script>
+</body>
+</html>
