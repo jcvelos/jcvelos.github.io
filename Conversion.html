@@ -3,6 +3,19 @@
 <head>
     <title>Converter</title>
     <style>
+
+        body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        color: pink;
+    }
+
+        body {
+        background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+        background-size: cover;
+        background-position: center;
+    }
         .result-box {
             position: absolute; /* Keeps the box in a fixed position */
             display: inline-block;
@@ -11,6 +24,56 @@
             height: 20px;
             width: 150px;
         }
+        
+    .header {
+        background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
+        background-size: 800% 100%; /* Five color stops, hence 500% */
+        background-position: right; /* Initially position the gradient to the right */
+        position: relative;
+        text-align: center;
+        color: black;
+        margin-bottom: 30px;
+        animation: wave 20s infinite linear; /* Continuous loop */
+    }
+
+    @keyframes wave {
+        0% {
+            background-position: right; /* Start from the right */
+        }
+        100% {
+            background-position: left; /* Move to the left */
+        }
+    }
+               
+    .header h1 {
+        margin-top: 0;
+        padding: 5px 10px;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: violet;
+        color: black;
+        cursor: pointer;
+        transition: background-color 1s, color 1s;
+    }
+
+    button:hover {
+        background: linear-gradient(to right, violet, pink);   
+    }
+
+    a {
+        color: pink; 
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline; 
+    }
+
     </style>
 </head>
 <body>
