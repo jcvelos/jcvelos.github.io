@@ -1,105 +1,323 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Say Hello</title>
-</head>
-<style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Add Numbers</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: pink;
+            font-family: Gothic;
+            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+            background-size: cover;
+            background-position: center;
+        }
 
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        color: pink;
-    }
-
-    body {
-        background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
-        background-size: cover;
-        background-position: center;
-    }
-
-    .header {
-        background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
-        background-size: 800% 100%; 
-        background-position: right; 
-        position: relative;
-        text-align: center;
-        color: black;
-        margin-bottom: 30px;
-        animation: wave 20s infinite linear; 
-    }
-
-    @keyframes wave {
-        0% {
+        .header {
+            background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
+            background-size: 800% 100%;
             background-position: right;
+            position: relative;
+            text-align: center;
+            color: black;
+            margin-bottom: 30px;
+            animation: wave 20s infinite linear;
         }
-        100% {
-            background-position: left; 
+
+        @keyframes wave {
+            0% {
+                background-position: right;
+            }
+            100% {
+                background-position: left;
+            }
         }
-    }
-               
-    .header h1 {
-        margin-top: 0;
-        padding: 5px 10px;
-    }
 
-    button {
-        margin-top: 10px;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-        background-color: violet;
-        color: black;
-        cursor: pointer;
-        transition: background-color 1s, color 1s;
-    }
+        .door-frame {
+            margin: auto;
+            transform: translate(0, 158%);
+            border: 5px solid #483248;
+            padding: 20px;
+            background-color: #301934;
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 200px;
+        }
 
-    button:hover {
-        background: linear-gradient(to right, violet, pink);   
-    }
+        #falling-box {
+            position: absolute;
+            top: -100px;
+            left: 580px;
+            width: 500px;
+            height: 20px;
+            padding: 20px;
+            background-color: #301934;
+            border: 3px solid #483248;
+            display: none;
+            position: relative;
+        }
 
-    a {
-        color: pink; 
-        text-decoration: none;
-    }
+        .hidden {
+            display: none;
+        }
 
-    a:hover {
-        text-decoration: underline; 
-    }
-    
-</style>
+        @keyframes box-fall {
+            0% {
+                transform: translateY(-150px);
+            }
+            5% {
+                transform: translateY(-153px);
+            }
+            20% {
+                transform: translateY(50px)
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            65% {
+                transform: translateY(10px);
+            }
+            80% {
+                transform: translateY(-5px);
+            }
+            95% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        #MSG {
+            margin: auto;
+            white-space: nowrap; 
+            overflow: hidden; 
+            border-right: 2px solid pink; 
+            display: block; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: typing 4s steps(30, end) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 30%;
+            }
+        }
+
+        .animate {
+            animation: box-fall 1s ease-in-out forwards;
+        }
+
+        .header h1 {
+            margin-top: 0;
+            padding: 5px 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-right: 5px; 
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+
+        a {
+            color: pink;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .settings {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .settings-options {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            background-color: #301934;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+        }
+
+        .settings:hover .settings-options {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .settings-options i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: pink;
+            cursor: pointer;
+        }
+
+        .link-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+        }
+
+        .link-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+
+        .link-hover-area {
+            position: relative;
+            display: inline-block;
+        }
+
+        .link-icons {
+            position: absolute;
+            top: 50%;
+            right: -35px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            background-color: #301934;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+        }
+
+        .link-hover-area:hover .link-icons {
+            opacity: 1;
+        }
+
+        .link-icons i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: black;
+            cursor: pointer;
+        }
+
+         .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .reset-button {
+            padding: 5px;
+            border: none;
+            border-radius: 20%;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        .reset-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
     </style>
-    <body>
-        <div class="header">
-        <h1>Add 2 numbers</h1>
+</head>
+<body>
+    <div class="header">
+        <div class="settings">
+            <i class="fas fa-bars"></i>
+            <div class="settings-options">
+                <i class="fas fa-home" onclick="location.href='index.html'"></i>
+                <i class="fas fa-cogs" onclick="location.href='Home_Web.html'"></i>
+            </div>
         </div>
-        <br>
-        <p1>
+        <h1>Add 2 numbers</h1>
+    </div>
+    <div class="door-frame">
         <label for="n1">Type your 1st number:</label>
-        <input id="n1" name="n1" type="number" onkeyup="computesum()" dir="rtl">
+        <input id="n1" name="n1" type="number" onkeyup="computeSum()" dir="rtl">
         <label for="n2">Type your 2nd number:</label>
-        <input id="n2" name="n2" type="number" onkeyup="computesum()" dir="rtl">
+        <input id="n2" name="n2" type="number" onkeyup="computeSum()" dir="rtl">
         <br><br>
-        </p>
-        <label for="sum" id="sumlabel">The sum is:</label>  
-        <input id="sum" name="sum" type="number" dir="rtl" readonly></input></p>
+        <label for="sum">The sum is:</label>  
+        <input id="sum" name="sum" type="number" dir="rtl" readonly>
         <br>
-        <br>
-        <a href="index.html">Back to Home Page</a> or
-        <a href="Home_Web.html"> To the Cooler Website</a>
-        <script>
-    function computesum(){
-        var x1,x2;
+        <div class="button-container">
+            <button onclick="animateAnswer()">Animate Answer</button>
+            <button class="reset-button" onclick="resetAnimation()"><i class="fas fa-sync-alt"></i></button>
+        </div>
+    </div>
+    <div id="falling-box">
+        <div id="MSG"></div>
+    </div>
 
-        x1 = document.getElementById("n1").value*1;
-        x2 = document.getElementById("n2").value*1;
+     <script>
+        function computeSum() {
+            var num1 = parseFloat(document.getElementById("n1").value);
+            var num2 = parseFloat(document.getElementById("n2").value);
+            var sum = num1 + num2;
 
-        let x3 = x1+x2;
+            document.getElementById("sum").value = sum;
+        }
 
-        document.getElementById("sumlabel").innerHTML
-            = 'The sum of '+x1+' and '+x2+' is:';
-        document.getElementById("sum").value = x3;
+        function animateAnswer() {
+            var num1 = parseFloat(document.getElementById("n1").value);
+            var num2 = parseFloat(document.getElementById("n2").value);
+            var sum = num1 + num2;
+
+            var box = document.getElementById("falling-box");
+            var msg = document.getElementById("MSG");
+            msg.innerHTML = '';
+            msg.classList.add("hidden");
+
+            setTimeout(function() {
+                msg.innerHTML = 'Your sum is ' + sum;
+                msg.classList.remove("hidden");
+
+                box.style.display = "block";
+                box.classList.add("animate");
+            }, 750);
+        }
+
+        function resetAnimation() {
+            var box = document.getElementById("falling-box");
+            var msg = document.getElementById("MSG");
+
+            box.classList.add("animate");
+            box.style.display = "none";
+            box.classList.remove("animate");
+            msg.classList.add("hidden");
+            msg.innerHTML = '';
         }
     </script>
 </body>
-</html> 
+</html>
