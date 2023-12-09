@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Say Hello</title>
     <style>
         body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        color: pink;
-    }
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: pink;
+            font-family: Gothic;
+        }
 
         body {
-        background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
-        background-size: cover;
-        background-position: center;
-    }
+            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+            background-size: cover;
+            background-position: center;
+        }
 
         .door-frame {
             margin: auto;
-            translate: 0 150%;
-            border: 5px solid pink;
+            transform: translate(0, 158%);
+            border: 5px solid #483248;
             padding: 20px;
-            background-color: ;
+            background-color: #301934;
             text-align: center;
             width: 300px;
             height: 200px;
@@ -47,6 +49,78 @@
             }
         }
 
+        #falling-box {
+            position: absolute;
+            top: -350px;
+            left: -130px;
+            width: 500px;
+            height: 20px;
+            padding: 20px;
+            background-color: #301934;
+            border: 3px solid #483248;
+            display: none;
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes box-fall {
+            0% {
+                transform: translateY(-150px);
+            }
+            5% {
+                transform: translateY(-153px);
+            }
+            20% {
+                transform: translateY(50px)
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            65% {
+                transform: translateY(10px);
+            }
+            80% {
+                transform: translateY(-5px);
+            }
+            95% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        #MSG {
+            margin: 0 10px;
+            white-space: nowrap; 
+            overflow: hidden; 
+            border-right: 2px solid pink; 
+            display: inline-block; 
+            position: relative;
+            animation: typing 4s steps(30, end) forwards;
+            vertical-align: middle;
+        }
+
+        #MSG::before {
+            content: "Hello ";
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 50%;
+            }
+        }
+
+        .animate {
+            animation: box-fall 1s ease-in-out forwards;
+        }
+
         .header h1 {
             margin-top: 0;
             padding: 5px 10px;
@@ -54,6 +128,7 @@
 
         button {
             margin-top: 10px;
+            margin-right: 5px; 
             padding: 5px 10px;
             border: none;
             border-radius: 5px;
@@ -65,6 +140,7 @@
 
         button:hover {
             background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
         }
 
         a {
@@ -75,25 +151,172 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .settings {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .settings-options {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            background-color: #301934;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+        }
+
+        .settings:hover .settings-options {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .settings-options i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: pink;
+            cursor: pointer;
+        }
+
+        .link-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+        }
+
+        .link-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+
+        .link-hover-area {
+            position: relative;
+            display: inline-block;
+        }
+
+        .link-icons {
+            position: absolute;
+            top: 50%;
+            right: -35px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            background-color: #301934;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+        }
+
+        .link-hover-area:hover .link-icons {
+            opacity: 1;
+        }
+
+        .link-icons i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: black;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="header">
+        <div class="settings">
+            <i class="fas fa-bars"></i>
+            <div class="settings-options">
+                <i class="fas fa-home" onclick="location.href='index.html'"></i>
+                <i class="fas fa-cogs" onclick="location.href='Home_Web.html'"></i>
+            </div>
+        </div>
         <h1>Say Hello</h1>
     </div>
     <div class="door-frame">
         <label for="fname">What is your name:</label><br>
         <input type="text" id="fname"><br>
-        <button onclick="sayhello()">Click Me For a Surprise</button>
+        <button onclick="fallingBox()">Click Me For a Surprise</button>
+        <button onclick="reset()" class="link-button">
+            <i class="fas fa-undo"></i>
+        </button>
+        <div class="falling-container">
+            <div id="falling-box" class="falling-box hidden">
+                <p id="MSG" class="hidden"></p>
+            </div>
+        </div>
+        <br><br>
     </div>
-    <br><br>
-    <a href="index.html">Back to Home Page</a> or
-    <a href="Home_Web.html">To the Cooler Website</a>
-    <br>
+
+     <audio id="bgAudio" loop autoplay>
+        <source src="path_to_your_default_audio.mp3" type="audio/mpeg"> 
+    </audio>
+    <audio id="bgAudio1" loop>
+        <source src="path_to_audio_for_JC.mp3" type="audio/mpeg"> 
+        <source src="path_to_audio_for_Jesiah.mp3" type="audio/mpeg"> 
+        <source src="path_to_audio_for_Godffrey.mp3" type="audio/mpeg">
+        <source src="path_to_audio_for_Roy.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        function sayhello() {
-            var name = document.getElementById("fname").value;
-            document.getElementById("MSG").innerHTML = 'Disappear among the sea of butterflies, ' + name;
+
+        function playBackgroundAudio(src) {
+            var audio = document.getElementById('bgAudio');
+            audio.src = src;
+            audio.load();
+            audio.play();
+        }
+
+        function stopBackgroundAudio() {
+            var audio = document.getElementById('bgAudio');
+            audio.pause();
+        }
+
+
+        function fallingBox() {
+            var name = document.getElementById("fname").value.toLowerCase();
+            var box = document.getElementById("falling-box");
+
+            document.getElementById("MSG").innerHTML = '';
+            document.getElementById("MSG").classList.add("hidden");
+
+            setTimeout(function() {
+                document.getElementById("MSG").innerHTML = name + ', I am pleased to meet you!';
+                document.getElementById("MSG").classList.remove("hidden");
+
+                box.style.display = "block";
+                box.classList.add("animate");
+
+                if (name.includes('JC')) {
+                    playBackgroundAudio('path_to_audio_for_JC.mp3');
+                } else if (name.includes('Jesiah')) {
+                    playBackgroundAudio('path_to_audio_for_Jesiah.mp3');
+                } else if (name.includes('Godffrey')) {
+                    playBackgroundAudio('path_to_audio_for_Godffrey.mp3');
+                } else if (name.includes('Roy')){
+                    playBackgroundAudio('path_to_audio_for_Roy.mp3');
+                } else {
+                    playBackgroundAudio('path_to_your_default_audio.mp3'); // Add the default audio path here
+                }
+            }, 750); 
+        }
+
+        function reset() {
+            var box = document.getElementById("falling-box");
+            box.style.display = "none";
+            box.classList.remove("animate");
+            document.getElementById("MSG").classList.add("hidden");
+            document.getElementById("MSG").innerHTML = '';
         }
     </script>
 </body>
