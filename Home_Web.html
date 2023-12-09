@@ -221,7 +221,6 @@ footer {
     const blackBg = document.getElementById('blackBg');
     const mainContent = document.getElementById('mainContent');
     const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 0.5;
 
     setTimeout(function() {
       blackBg.style.opacity = '0';
@@ -235,7 +234,7 @@ footer {
 
 </head>
 <body>
-  <audio id="bgMusic" autoplay loop>
+  <audio id="bgMusic" autoplay loop volume="0.25">
     <source src="BgMusic.mp3" type="audio/mpeg">
   </audio>
   <!-- Black background -->
