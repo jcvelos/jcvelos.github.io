@@ -258,10 +258,10 @@
         <br><br>
     </div>
 
-     <audio id="bgAudio" loop autoplay volume="0.1">
+     <audio id="bgAudio" loop autoplay volume='0.1'>
         <source src="BgMusic.mp3" type="audio/mpeg" > 
     </audio>
-    <audio id="bgAudio1" volume="0.2">
+    <audio id="bgAudio1">
         <source src="Velos.mp3" type="audio/mpeg"> 
         <source src="Jesiah.mp3" type="audio/mpeg"> 
         <source src="Godffrey.mp3" type="audio/mpeg">
@@ -275,52 +275,54 @@
         var audioPlaying = false;
 
         function playBackgroundAudio(src, volume = 0.1) {
+            audio.volume = volume;
             audio.src = src;
             audio.load();
             audio.play();
             audioPlaying = true;
         }
-
+        
         function stopBackgroundAudio() {
             audio.pause();
         }
-
+        
         function fallingBox() {
-            var name = document.getElementById("fname").value.toLowerCase();
+            var name = document.getElementById("fname").value.trim().toLowerCase();
             var box = document.getElementById("falling-box");
-
+        
             document.getElementById("MSG").innerHTML = '';
             document.getElementById("MSG").classList.add("hidden");
-
-            setTimeout(function() {
+        
+            setTimeout(function () {
                 document.getElementById("MSG").innerHTML = name + ', I am pleased to meet you!';
-                document.getElementById("MSG").classList.remove("hidden");
-
+                document.getElementById("MSG").classList.remove("hidden');
+        
                 box.style.display = "block";
                 box.classList.add("animate");
-
-                if (name.includes('JC') && !audioPlaying) {
+        
+                if (name === 'jc' && !audioPlaying) {
                     playBackgroundAudio('Velos.mp3');
-                } else if (name.includes('Jesiah') && !audioPlaying) {
+                } else if (name === 'jesiah' && !audioPlaying) {
                     playBackgroundAudio('Jesiah.mp3');
-                } else if (name.includes('Godffrey') && !audioPlaying) {
+                } else if (name === 'godffrey' && !audioPlaying) {
                     playBackgroundAudio('Godffrey.mp3');
-                } else if (name.includes('Dreame') && !audioPlaying) {
+                } else if (name === 'dreame' && !audioPlaying) {
                     playBackgroundAudio('Dreame.mp3');
-                } else if (name.includes('Roy') && !audioPlaying){
+                } else if (name === 'roy' && !audioPlaying) {
                     playBackgroundAudio('Roy.mp3');
                 } else if (!audioPlaying) {
                     playBackgroundAudio('BgMusic.mp3');
                 }
-            }, 750); 
+            }, 750);
         }
-
+        
         function reset() {
             var box = document.getElementById("falling-box");
             box.style.display = "none";
             box.classList.remove("animate");
             document.getElementById("MSG").classList.add("hidden");
             document.getElementById("MSG").innerHTML = '';
+            stopBackgroundAudio();
             audioPlaying = false;
         }
     </script>
