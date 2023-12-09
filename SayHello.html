@@ -274,8 +274,9 @@
         var audio1 = document.getElementById('bgAudio1');
         var audioPlaying = false;
 
-        function playBackgroundAudio(src) {
+        function playBackgroundAudio(src, volume = 0.3) {
             audio.src = src;
+            audio.volume = 0.1; // Adjust the volume here (0.3 is 30% volume)
             audio.load();
             audio.play();
             audioPlaying = true;
