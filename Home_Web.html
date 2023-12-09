@@ -220,16 +220,23 @@ footer {
   window.onload = function() {
     const blackBg = document.getElementById('blackBg');
     const mainContent = document.getElementById('mainContent');
+    const bgMusic = document.getElementById('bgMusic');
 
     setTimeout(function() {
       blackBg.style.opacity = '0';
       mainContent.classList.add('show');
-    }, 1000); // Delay in milliseconds before transition (adjust as needed)
+      setTimeout(function() {
+        bgMusic.play();
+      }, 2000); 
+    }, 1000); 
   }
 </script>
 
 </head>
 <body>
+  <audio id="bgMusic" autoplay loop>
+    <source src="BgMusic.mp3" type="audio/mpeg">
+  </audio>
   <!-- Black background -->
   <div id="blackBg">
     <!-- Loading content -->
@@ -305,5 +312,6 @@ footer {
         </footer>
   </div>
 </body>
+</html>
 </html>
 
