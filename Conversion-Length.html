@@ -1,111 +1,335 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Length Converter</title>
     <style>
-
         body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        color: pink;
-    }
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: pink;
+        } 
 
         body {
-        background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
-        background-size: cover;
-        background-position: center;
-    }
+            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
         .result-box {
-            position: absolute; /* Keeps the box in a fixed position */
-            display: inline-block;
+            position: relative;
+            display: flex;
             border: 1px solid grey;
-            text-align: right; /* Align text to the right */
+            text-align: right;
+            justify-content: flex-end;
             height: 20px;
             width: 150px;
+            margin-top: 10px;
         }
 
-    .header {
-        background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
-        background-size: 800% 100%; /* Five color stops, hence 500% */
-        background-position: right; /* Initially position the gradient to the right */
-        position: relative;
-        text-align: center;
-        color: black;
-        margin-bottom: 30px;
-        animation: wave 20s infinite linear; /* Continuous loop */
-    }
+        .header {
+            background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
+            background-size: 800% 100%;
+            background-position: right;
+            position: relative;
+            text-align: center;
+            color: black;
+            margin-bottom: 30px;
+            animation: wave 20s infinite linear;
+        }
 
-    @keyframes wave {
-        0% {
-            background-position: right; /* Start from the right */
+        @keyframes wave {
+            0% {
+                background-position: right;
+            }
+            100% {
+                background-position: left;
+            }
         }
-        100% {
-            background-position: left; /* Move to the left */
-        }
-    }
                
-    .header h1 {
-        margin-top: 0;
-        padding: 5px 10px;
-    }
+        .door-frame {
+            margin: auto;
+            transform: translate(0, 158%);
+            border: 5px solid #483248;
+            padding: 20px;
+            background-color: #301934;
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 200px;
+        }
 
-    button {
-        margin-top: 10px;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-        background-color: violet;
-        color: black;
-        cursor: pointer;
-        transition: background-color 1s, color 1s;
-    }
+        .door-frame * {
+            margin-bottom: 5px; /* Adjust the margin here */
+        }
 
-    button:hover {
-        background: linear-gradient(to right, violet, pink);   
-    }
+        #falling-box {
+            position: absolute;
+            top: -100px;
+            left: 580px;
+            width: 500px;
+            height: 20px;
+            padding: 20px;
+            background-color: #301934;
+            border: 3px solid #483248;
+            display: none;
+            position: relative;
+        }
 
-    a {
-        color: pink; 
-        text-decoration: none;
-    }
+        .hidden {
+            display: none;
+        }
 
-    a:hover {
-        text-decoration: underline; 
-    }
+        @keyframes box-fall {
+            0% {
+                transform: translateY(-150px);
+            }
+            5% {
+                transform: translateY(-153px);
+            }
+            20% {
+                transform: translateY(50px)
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            65% {
+                transform: translateY(10px);
+            }
+            80% {
+                transform: translateY(-5px);
+            }
+            95% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        #MSG {
+            margin: auto;
+            white-space: nowrap; 
+            overflow: hidden; 
+            border-right: 2px solid pink; 
+            display: block; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: typing 4s steps(30, end) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 30%;
+            }
+        }
+
+        .animate {
+            animation: box-fall 1s ease-in-out forwards;
+        }
+
+        .header h1 {
+            margin-top: 0;
+            padding: 5px 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-right: 5px; 
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        .button-container button {
+            margin-top: 0;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+
+        a {
+            color: pink;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .settings {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .settings-options {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            background-color: #301934;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+        }
+
+        .settings:hover .settings-options {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .settings-options i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: pink;
+            cursor: pointer;
+        }
+
+        .link-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+        }
+
+        .link-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+
+        .link-hover-area {
+            position: relative;
+            display: inline-block;
+        }
+
+        .link-icons {
+            position: absolute;
+            top: 50%;
+            right: -35px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            background-color: #301934;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+        }
+
+        .link-hover-area:hover .link-icons {
+            opacity: 1;
+        }
+
+        .link-icons i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: black;
+            cursor: pointer;
+        }
+
+        .reset-button {
+            height: 26px;
+            padding: 5px;
+            border: none;
+            border-radius: 20%;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        .reset-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+
+        .clear-button {
+            width: 20px;
+            height: 26px;
+            padding: 5px;
+            border: none;
+            border-radius: 20%;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        .clear-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-    <h1>Length Converter</h1>
+        <div class="settings">
+            <i class="fas fa-bars"></i>
+            <div class="settings-options">
+                <i class="fas fa-home" onclick="location.href='index.html'"></i>
+                <i class="fas fa-cogs" onclick="location.href='Home_Web.html'"></i>
+            </div>
+        </div>
+        <h1>Length Converter</h1>
     </div>
 
-    <label for="fromUnit">Convert:</label>
-    <select id="fromUnit">
-        <option value="metersToFeet">Meters to Feet</option>
-        <option value="feetToMeters">Feet to Meters</option>
-    </select>
+    <div class="door-frame">
+        <label for="fromUnit">Convert:</label>
+        <select id="fromUnit">
+            <option value="metersToFeet">Meters to Feet</option>
+            <option value="feetToMeters">Feet to Meters</option>
+        </select>
 
-    <br><br>
-    <label for="inputValue">Enter Value:</label>
-    <input type="number" id="inputValue" step="1" dir="rtl">
+        <label for="inputValue">Enter Value:</label>
+        <input type="number" id="inputValue" step="1" dir="rtl">
 
-    <button onclick="convertLength()">Convert</button>
-    <button onclick="removeInput()">Clear</button>
+        <div class="button-container">
+            <button onclick="convertLength()">Convert</button>
+            <button class="clear-button" onclick="clearInput()"><i class="fas fa-times"></i></button>
+        </div>
 
-    <br><br>
-    <label for="result1">Result:</label>
-    <div class="result-box" id="result1"></div><!-- Result displayed in a box -->
+        <label for="result">Result:</label>
+        <div class="result-box" id="result"></div>
 
-    <br><br>
-    <a href="index.html">Back to Home Page</a> or
-    <a href="Home_Web.html"> To the Cooler Website</a>
+        <div class="button-container">
+            <button onclick="animateAnswer()">Animate Answer</button>
+            <button class="reset-button" onclick="resetAnimation()"><i class="fas fa-sync-alt"></i></button>
+        </div>
+    </div>
+
+    <div id="falling-box">
+        <div id="MSG"></div>
+    </div>
 
     <script>
         function convertLength() {
             var fromUnit = document.getElementById("fromUnit").value;
             var inputValue = parseInt(document.getElementById("inputValue").value); // Parse to integer
-            var result = document.getElementById("result1");
+            var result = document.getElementById("result");
 
             if (fromUnit === "metersToFeet") {
                 var feet = inputValue * 3.28084;
@@ -118,13 +342,37 @@
             }
         }
 
-        function removeInput() {
-            document.getElementById("inputValue").value = ""; // Clear the input value
-            document.getElementById("result1").innerHTML = ""; // Clear the result value
+        function animateAnswer() {
+            var result = document.getElementById("result");
+            var box = document.getElementById("falling-box");
+            var msg = document.getElementById("MSG");
+
+            msg.innerHTML = 'Your result is ' + result.innerHTML + '!';
+            msg.classList.remove("hidden");
+
+            setTimeout(function() {
+                box.style.display = "block";
+                box.classList.add("animate");
+            }, 750); 
+        }
+
+        function resetAnimation() {
+            var box = document.getElementById("falling-box");
+            var msg = document.getElementById("MSG");
+
+            box.classList.add("animate");
+            box.style.display = "none";
+            box.classList.remove("animate");
+            msg.classList.add("hidden");
+            msg.innerHTML = '';
+        }
+
+        function clearInput() {
+            document.getElementById("inputValue").value = "";
+            document.getElementById("result").innerHTML = "";
         }
     </script>
 </body>
 </html>
-
 
 
