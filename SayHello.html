@@ -258,10 +258,10 @@
         <br><br>
     </div>
 
-    <audio id="bgAudio" loop autoplay volume="0.1">
-        <source src="BgMusic.mp3" type="audio/mpeg"> 
+     <audio id="bgAudio" loop autoplay volume="0.1">
+        <source src="BgMusic.mp3" type="audio/mpeg" > 
     </audio>
-    <audio id="bgAudio1" volume="0.1">
+    <audio id="bgAudio1" volume="0.2">
         <source src="Velos.mp3" type="audio/mpeg"> 
         <source src="Jesiah.mp3" type="audio/mpeg"> 
         <source src="Godffrey.mp3" type="audio/mpeg">
@@ -288,31 +288,29 @@
         function fallingBox() {
             var name = document.getElementById("fname").value.toLowerCase();
             var box = document.getElementById("falling-box");
-        
+
             document.getElementById("MSG").innerHTML = '';
             document.getElementById("MSG").classList.add("hidden");
-        
+
             setTimeout(function() {
                 document.getElementById("MSG").innerHTML = name + ', I am pleased to meet you!';
-                document.getElementById("MSG").classList.remove("hidden');
-        
+                document.getElementById("MSG").classList.remove("hidden");
+
                 box.style.display = "block";
                 box.classList.add("animate");
-        
-                stopBackgroundAudio(); 
-        
-                if (name.includes('jc')) {
+
+                if (name.includes('JC') && !audioPlaying) {
                     playBackgroundAudio('Velos.mp3');
-                } else if (name.includes('jesiah')) {
+                } else if (name.includes('Jesiah') && !audioPlaying) {
                     playBackgroundAudio('Jesiah.mp3');
-                } else if (name.includes('godffrey')) {
+                } else if (name.includes('Godffrey') && !audioPlaying) {
                     playBackgroundAudio('Godffrey.mp3');
-                } else if (name.includes('dreame')) {
+                } else if (name.includes('Dreame') && !audioPlaying) {
                     playBackgroundAudio('Dreame.mp3');
-                } else if (name.includes('roy')) {
+                } else if (name.includes('Roy') && !audioPlaying){
                     playBackgroundAudio('Roy.mp3');
-                } else {
-                    playBackgroundAudio('BgMusic.mp3'); // Default audio path here
+                } else if (!audioPlaying) {
+                    playBackgroundAudio('BgMusic.mp3');
                 }
             }, 750); 
         }
