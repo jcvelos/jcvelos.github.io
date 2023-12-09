@@ -268,7 +268,7 @@
         }
 
         .clear-button {
-            width: 20px;
+            width: 25px;
             height: 26px;
             padding: 5px;
             border: none;
@@ -308,14 +308,14 @@
 
         <div class="button-container">
             <button onclick="convertTemperature()">Convert</button>
-            <button class="clear-button" onclick="clearInput()"><i class="fas fa-times"></i></button>
+            <button class="clear-button" onclick="clearInput()"><i class="fas fa-undo"></i></button>
         </div>
 
         <label for="result1">Result:</label>
         <div class="result-box" id="result1"></div>
 
-        <div class="button-container">
-            <button onclick="animateAnswer()">Animate Answer</button>
+         <div class="button-container">
+           <button onclick="animateAnswer()">Animate Answer</button>
             <button class="reset-button" onclick="resetAnimation()"><i class="fas fa-sync-alt"></i></button>
         </div>
     </div>
@@ -370,9 +370,6 @@
             document.getElementById("inputValue1").value = "";
             document.getElementById("result1").innerHTML = "";
         }
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
