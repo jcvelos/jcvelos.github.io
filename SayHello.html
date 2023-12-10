@@ -267,27 +267,20 @@
         <source src="HomePageMusic.mp3" type="audio/mpeg"> 
     </audio>
     <audio id="bgAudio1" loop>
-        <source src="JC.mp3" type="audio/mpeg"> 
+        <source src="Velos.mp3" type="audio/mpeg"> 
         <source src="Jesiah.mp3" type="audio/mpeg"> 
         <source src="Godffrey.mp3" type="audio/mpeg">
         <source src="Dreame.mp3" type="audio/mpeg">
         <source src="Roy.mp3" type="audio/mpeg">
     </audio>
-
+    
     <script>
-
-        function playBackgroundAudio(src) {
+       function playBackgroundAudio(src) {
             var audio = document.getElementById('bgAudio');
             audio.src = src;
             audio.load();
             audio.play();
         }
-
-        function stopBackgroundAudio() {
-            var audio = document.getElementById('bgAudio');
-            audio.pause();
-        }
-
 
         function fallingBox() {
             var name = document.getElementById("fname").value.toLowerCase();
@@ -304,7 +297,7 @@
                 box.classList.add("animate");
 
                 if (name.includes('jc')) {
-                    playBackgroundAudio('JC.mp3');
+                    playBackgroundAudio('Velos.mp3');
                 } else if (name.includes('jesiah')) {
                     playBackgroundAudio('Jesiah.mp3');
                 } else if (name.includes('godffrey')) {
@@ -316,7 +309,7 @@
                 } else {
                     playBackgroundAudio('BgMusic.mp3'); // Add the default audio path here
                 }
-            }, 750); 
+            }, 1000); 
         }
 
         function reset() {
