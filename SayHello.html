@@ -9,24 +9,24 @@
             padding: 0;
             height: 100%;
             color: pink;
-            font-family: Gothic;
+            font-family: Garamond;
         }
 
         body {
-            background-image: url("Forest.png");
+            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
             background-size: cover;
             background-position: center;
         }
 
         .door-frame {
             margin: auto;
-            transform: translate(0, 158%);
+            transform: translate(0, 154%);
             border: 5px solid #483248;
             padding: 20px;
             background-color: #301934;
             text-align: center;
             width: 300px;
-            height: 200px;
+            height: 220px;
         }
 
         .header {
@@ -113,7 +113,7 @@
                 width: 0;
             }
             to {
-                width: 60%;
+                width: 50%;
             }
         }
 
@@ -255,64 +255,63 @@
                 <p id="MSG" class="hidden"></p>
             </div>
         </div>
-        <br><br>
+        <h4>How to use JC's Say Hello</h4>
+        <div style="max-width: 270px; overflow-wrap: break-word; font-size: 11px; margin-left: 15px;">
+                <p>1. Type in your name. Click the "Click Me For a Surprise" button. Each name corresponds to certain songs. Try jc, dreame, godffrey, jesiah and roy.</p>
+                <p>2. Once the Animation is done click the undo button to reset the animation.</p>
+                <p>Note: The name Roy pauses the entire background music.</p>
+        </div>
     </div>
 
-     <audio id="bgAudio" loop autoplay volume="0.1">
-        <source src="BgMusic.mp3" type="audio/mpeg"> 
+     <audio id="bgAudio" loop autoplay>
+        <source src="path_to_your_default_audio.mp3" type="audio/mpeg"> 
     </audio>
-    <audio id="bgAudio1" volume="0.1">
-        <source src="Velos.mp3" type="audio/mpeg"> 
-        <source src="Jesiah.mp3" type="audio/mpeg"> 
-        <source src="Godffrey.mp3" type="audio/mpeg">
-        <source src="Dreame.mp3" type="audio/mpeg">
+    <audio id="bgAudio1" loop>
+        <source src="path_to_audio_for_JC.mp3" type="audio/mpeg"> 
+        <source src="path_to_audio_for_Jesiah.mp3" type="audio/mpeg"> 
+        <source src="path_to_audio_for_Godffrey.mp3" type="audio/mpeg">
         <source src="path_to_audio_for_Roy.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        var audio = document.getElementById('bgAudio');
-        var audio1 = document.getElementById('bgAudio1');
 
-        function playBackgroundAudio(audioElement, src, volume = 0.1) {
-            audioElement.src = src;
-            audioElement.volume = volume;
-            audioElement.load();
-            audioElement.play();
+        function playBackgroundAudio(src) {
+            var audio = document.getElementById('bgAudio');
+            audio.src = src;
+            audio.load();
+            audio.play();
         }
 
-        function stopBackgroundAudio(audioElement) {
-            audioElement.pause();
+        function stopBackgroundAudio() {
+            var audio = document.getElementById('bgAudio');
+            audio.pause();
         }
+
 
         function fallingBox() {
             var name = document.getElementById("fname").value.toLowerCase();
             var box = document.getElementById("falling-box");
-        
+
             document.getElementById("MSG").innerHTML = '';
             document.getElementById("MSG").classList.add("hidden");
-        
+
             setTimeout(function() {
-                document.getElementById("MSG").innerHTML = name + ', I have a music for you, here!';
+                document.getElementById("MSG").innerHTML = name + ', I am pleased to meet you!';
                 document.getElementById("MSG").classList.remove("hidden");
-        
+
                 box.style.display = "block";
                 box.classList.add("animate");
-        
-                stopBackgroundAudio(audio); // Stop any currently playing audio
-                stopBackgroundAudio(audio1); // Stop any currently playing audio
 
-                if (name.includes('jc')) {
-                    playBackgroundAudio(audio, 'Velos.mp3');
-                } else if (name.includes('jesiah')) {
-                    playBackgroundAudio(audio1, 'Jesiah.mp3', 0.3);
-                } else if (name.includes('godffrey')) {
-                    playBackgroundAudio(audio, 'Godffrey.mp3');
-                } else if (name.includes('dreame')) {
-                    playBackgroundAudio(audio, 'Dreame.mp3');
-                } else if (name.includes('roy')) {
-                    playBackgroundAudio(audio, 'Roy.mp3');
+                if (name.includes('JC')) {
+                    playBackgroundAudio('path_to_audio_for_JC.mp3');
+                } else if (name.includes('Jesiah')) {
+                    playBackgroundAudio('path_to_audio_for_Jesiah.mp3');
+                } else if (name.includes('Godffrey')) {
+                    playBackgroundAudio('path_to_audio_for_Godffrey.mp3');
+                } else if (name.includes('Roy')){
+                    playBackgroundAudio('path_to_audio_for_Roy.mp3');
                 } else {
-                    playBackgroundAudio(audio, 'BgMusic.mp3'); // Default audio path here
+                    playBackgroundAudio('path_to_your_default_audio.mp3'); // Add the default audio path here
                 }
             }, 750); 
         }
@@ -327,3 +326,5 @@
     </script>
 </body>
 </html>
+
+
