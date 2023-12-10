@@ -13,7 +13,7 @@
         }
 
         body {
-            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+            background-image: url("Forest.png");
             background-size: cover;
             background-position: center;
         }
@@ -264,13 +264,14 @@
     </div>
 
      <audio id="bgAudio" loop autoplay>
-        <source src="path_to_your_default_audio.mp3" type="audio/mpeg"> 
+        <source src="HomePageMusic.mp3" type="audio/mpeg"> 
     </audio>
     <audio id="bgAudio1" loop>
-        <source src="path_to_audio_for_JC.mp3" type="audio/mpeg"> 
-        <source src="path_to_audio_for_Jesiah.mp3" type="audio/mpeg"> 
-        <source src="path_to_audio_for_Godffrey.mp3" type="audio/mpeg">
-        <source src="path_to_audio_for_Roy.mp3" type="audio/mpeg">
+        <source src="JC.mp3" type="audio/mpeg"> 
+        <source src="Jesiah.mp3" type="audio/mpeg"> 
+        <source src="Godffrey.mp3" type="audio/mpeg">
+        <source src="Dreame.mp3" type="audio/mpeg">
+        <source src="Roy.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -302,16 +303,18 @@
                 box.style.display = "block";
                 box.classList.add("animate");
 
-                if (name.includes('JC')) {
-                    playBackgroundAudio('path_to_audio_for_JC.mp3');
-                } else if (name.includes('Jesiah')) {
-                    playBackgroundAudio('path_to_audio_for_Jesiah.mp3');
-                } else if (name.includes('Godffrey')) {
-                    playBackgroundAudio('path_to_audio_for_Godffrey.mp3');
-                } else if (name.includes('Roy')){
-                    playBackgroundAudio('path_to_audio_for_Roy.mp3');
+                if (name.includes('jc')) {
+                    playBackgroundAudio('JC.mp3');
+                } else if (name.includes('jesiah')) {
+                    playBackgroundAudio('Jesiah.mp3');
+                } else if (name.includes('godffrey')) {
+                    playBackgroundAudio('Godffrey.mp3');
+                } else if (name.includes('dreame')) {
+                    playBackgroundAudio('Dreame.mp3');
+                } else if (name.includes('roy')){
+                    playBackgroundAudio('Roy.mp3');
                 } else {
-                    playBackgroundAudio('path_to_your_default_audio.mp3'); // Add the default audio path here
+                    playBackgroundAudio('BgMusic.mp3'); // Add the default audio path here
                 }
             }, 750); 
         }
