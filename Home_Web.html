@@ -179,43 +179,7 @@ footer {
   display: flex;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (min-width: 601px) {
-  .row {
-    flex-direction: row; /* Display columns in a row layout */
-  }
-}
-
-/* Phone screens (max-width: 600px) */
-@media screen and (max-width: 600px) {
-  /* Adjustments for smaller screens */
-  .row {
-    flex-direction: column; /* Display columns in a single column layout */
-  }
-
-  /* Ensure all columns take full width on smaller screens */
-  .column.side,
-  .column.middle {
-    width: 100%;
-    margin: 5px 0; /* Adjusted margin for smaller screens */
-  }
-
-  /* Ensure the side and middle columns maintain their widths */
-  .column.side {
-    width: 100%;
-  }
-
-  .column.middle {
-    width: 100%;
-  }
-}
-
-/* Add scrollbar to the content */
-.row {
-  overflow-x: auto;
-}
 </style>
-
 <script>
   window.onload = function() {
     const blackBg = document.getElementById('blackBg');
@@ -231,7 +195,6 @@ footer {
     }, 1000); 
   }
 </script>
-
 </head>
 <body>
   <audio id="bgMusic" autoplay loop volume="0.25">
@@ -286,10 +249,19 @@ footer {
         
       <div class="column middle">
         <h2>Welcome to Veemo's Play Page</h2><br>
-        <h3>How to Navigate</h3><br>
+        <h3>Introduction to the Website<h3>
+          
         <div>
-          <p>1. Hover over home if you want to see the index or the main home where you can see the assignment in ITC.</p>
-        <p>2. Hover over to the ITC Assignment Nav Bar if you want to see the assignments </p>
+          <p>    Hello, my name is John Carl Velos, for more info about me you can refer on the right side which is akin to a bibliography although it is plain and simple. Anyways, This is a website that I am working on as I love styling the website, you can think of this as a journal that you will visually see how it is improved as time goes by. There are some minor inconvenience with some part I apologize but I will improve it as soon as I can (I hope since procrastination and laziness is a thing). The highlight of my progress is on the say hello link, click it for a suprise. To know how to navigate please continue reading down below to know how.</p>
+        </div>
+          <h3>How to Navigate</h3><br>
+        <div>
+        <p>1. Hover over home and click it if you want to see the index or the main home where you can see the assignment in ITC.</p>
+        <p>2. Hover over to the ITC Assignment Nav Bar and choose if you want to see the assignments </p>
+        <p>3. After you hover to the ITC assignments Nav Bar, you will see two options which is the Converter and the Calculator.</p>
+        <p>4. Under the Converter is the Length and Width converter while under the Calculator is the Factorial, Income Tax Calculator and the Simple Payroll</p>
+        <p>5. Hover on to the options and you will see the links of the assignments. Click to choose which one of them would you like to visit then boom you can access the assignments tasked by our ITC Professor, Roy A. Geralde</p>
+        <p>Note: There is music in each links you visit so I highly recommend to lower your pc volume so that it will not be an inconvenience. Thank you for looking at my website and have fun!</p>
         </div>
       </div>
         
