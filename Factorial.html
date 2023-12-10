@@ -1,127 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Number Operations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Factorials</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: pink;
+            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .header {
+            background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
+            background-size: 800% 100%;
+            background-position: right;
+            position: relative;
+            text-align: center;
+            color: black;
+            margin-bottom: 30px;
+            animation: wave 20s infinite linear;
+        }
+
+        @keyframes wave {
+            0% {
+                background-position: right;
+            }
+            100% {
+                background-position: left;
+            }
+        }
+
+        .door-frame {
+            margin: auto;
+            transform: translate(0, 158%);
+            border: 5px solid #483248;
+            padding: 20px;
+            background-color: #301934;
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 200px;
+        }
+
+        .door-frame * {
+            margin-bottom: 5px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 10px;
+        }
+
+        .button-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-right: 5px; 
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        } 
+        .clear-button {
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        .clear-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
+    </style>
 </head>
-<style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        color: pink;
-    }
-
-        body {
-        background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
-        background-size: cover;
-        background-position: center;
-    }
-
-    .header {
-        background-image: linear-gradient(to right, indigo, indigo, violet 25%, pink 35%, violet 75%, indigo, indigo);
-        background-size: 800% 100%; /* Five color stops, hence 500% */
-        background-position: right; /* Initially position the gradient to the right */
-        position: relative;
-        text-align: center;
-        color: black;
-        margin-bottom: 30px;
-        animation: wave 20s infinite linear; /* Continuous loop */
-    }
-
-    @keyframes wave {
-        0% {
-            background-position: right; /* Start from the right */
-        }
-        100% {
-            background-position: left; /* Move to the left */
-        }
-    }
-               
-    .header h1 {
-        margin-top: 0;
-        padding: 5px 10px;
-    }
-
-    button {
-        margin-top: 10px;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-        background-color: violet;
-        color: black;
-        cursor: pointer;
-        transition: background-color 1s, color 1s;
-    }
-
-    button:hover {
-        background: linear-gradient(to right, violet, pink);   
-    }
-
-    a {
-        color: pink; 
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline; 
-    }
-</style>
 <body>
     <div class="header">
         <h1>Factorials</h1>
     </div>
+    
+     <div class="door-frame">
+        <label for="inputNumber">Enter a number:</label>
+        <input type="number" id="inputNumber" dir="rtl">
 
-    <label for="inputNumber">Enter a number:</label>
-    <input type="number" id="inputNumber" dir="rtl">
+        <button onclick="calculate()">Calculate</button>
+        <button onclick="clearValues()"">Clear</button>
 
-    <button onclick="calculate()">Calculate</button>
-    <button onclick="clearValues()">Clear</button>
-
-    <p>Factorial of <span id="factorial"></span></p>
-    <p>Sum of the first <span id="sum"></span> numbers</p>
-    <p>Average of the first <span id="average"></span> numbers</p>
-
-    <br><br>
-    <a href="index.html">Back to Home Page</a> or
-    <a href="Home_Web.html"> To the Cooler Website</a>
+        <p><span id="factorial"></span></p>
+        <p><span id="sum"></span></p>
+        <p><span id="average"></span></p>
+    </div>
 
     <script>
         function calculate() {
             const n = parseInt(document.getElementById("inputNumber").value);
 
-            // Calculate nth factorial using a while loop
             let factorial = 1;
-            let i = 1;
-            while (i <= n) {
-                factorial *= i;
-                i++;
-            }
-            document.getElementById("factorial").innerText = `${n}! = ${factorial}`;
-
-            // Calculate sum of first n numbers using a do-while loop
             let sum = 0;
-            let j = 1;
-            do {
-                sum += j;
-                j++;
-            } while (j <= n);
-            document.getElementById("sum").innerText = sum;
-
-            // Calculate average of first n numbers using a for loop
             let total = 0;
-            for (let k = 1; k <= n; k++) {
-                total += k;
+
+            for (let i = 1; i <= n; i++) {
+                factorial *= i;
+                sum += i;
+                total += i;
             }
+
             const average = total / n;
-            document.getElementById("average").innerText = average;
+
+            document.getElementById("factorial").innerText = `nth factorial of ${n} is ${factorial}`;
+            document.getElementById("sum").innerText = `Sum of the first ${n} numbers is ${sum}`;
+            document.getElementById("average").innerText = `Average of the first ${n} numbers is ${average}`;
         }
 
         function clearValues() {
-            document.getElementById("inputNumber").value = ""; // Clear input field
-            document.getElementById("factorial").innerText = ""; // Clear factorial value
-            document.getElementById("sum").innerText = ""; // Clear sum value
-            document.getElementById("average").innerText = ""; // Clear average value
+            document.getElementById("inputNumber").value = "";
+            document.getElementById("factorial").innerText = "";
+            document.getElementById("sum").innerText = "";
+            document.getElementById("average").innerText = "";
         }
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
