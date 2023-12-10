@@ -2,17 +2,31 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Factorials</title>
+    <title>Length Converter</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             color: pink;
-            background-image: url("https://i.imgur.com/g9Ywa6a.jpg");
+        } 
+
+        body {
+            background-image: url("Forest.png");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+        }
+
+        .result-box {
+            position: relative;
+            display: flex;
+            border: 1px solid grey;
+            text-align: right;
+            justify-content: flex-end;
+            height: 20px;
+            width: 150px;
+            margin-top: 10px;
         }
 
         .header {
@@ -34,10 +48,10 @@
                 background-position: left;
             }
         }
-
+               
         .door-frame {
             margin: auto;
-            transform: translate(0, 158%);
+            transform: translate(0, 120%);
             border: 5px solid #483248;
             padding: 20px;
             background-color: #301934;
@@ -47,23 +61,43 @@
             justify-content: center;
             align-items: center;
             width: 300px;
-            height: 200px;
+            height: 250px;
         }
 
         .door-frame * {
-            margin-bottom: 5px;
+            margin-bottom: 5px; /* Adjust the margin here */
         }
 
-        .button-container {
-            display: flex;
-            justify-content: space-between; 
-            align-items: center; 
-            margin-top: 10px;
+        @keyframes box-fall {
+            0% {
+                transform: translateY(-150px);
+            }
+            5% {
+                transform: translateY(-153px);
+            }
+            20% {
+                transform: translateY(50px)
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            65% {
+                transform: translateY(10px);
+            }
+            80% {
+                transform: translateY(-5px);
+            }
+            95% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0);
+            }
         }
 
-        .button-wrapper {
-            display: inline-block;
-            position: relative;
+        .header h1 {
+            margin-top: 0;
+            padding: 5px 10px;
         }
 
         button {
@@ -78,20 +112,11 @@
             transition: background-color 1s, color 1s;
         }
 
-        button:hover {
-            background: linear-gradient(to right, violet, pink);
-            box-shadow: 0 0 10px 3px #888;
-        } 
-        .clear-button {
-            border: none;
-            border-radius: 5px;
-            background-color: violet;
-            color: black;
-            cursor: pointer;
-            transition: background-color 1s, color 1s;
+        .button-container button {
+            margin-top: 0;
         }
 
-        .clear-button:hover {
+        button:hover {
             background: linear-gradient(to right, violet, pink);
             box-shadow: 0 0 10px 3px #888;
         }
@@ -174,6 +199,20 @@
             color: black;
             cursor: pointer;
         }
+
+        .clear-button {
+            border: none;
+            border-radius: 5px;
+            background-color: violet;
+            color: black;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        .clear-button:hover {
+            background: linear-gradient(to right, violet, pink);
+            box-shadow: 0 0 10px 3px #888;
+        }
     </style>
 </head>
 <body>
@@ -199,10 +238,11 @@
         <p><span id="sum"></span></p>
         <p><span id="average"></span></p>
     </div>
-    
-    <audio id="bgAudio" volume="0.1" loop autoplay>
-        <source src="BgMusic.mp3" type="audio/mpeg"> 
+
+    <audio id="bgAudio" volume="0.1" loop autoplay >
+        <source src="BgMusic.mp3" type="audio/mpeg">
     </audio>
+
 
     <script>
         function calculate() {
