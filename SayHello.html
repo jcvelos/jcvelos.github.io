@@ -350,7 +350,7 @@
         function playBackgroundAudio(src) {
             var audio = document.getElementById('bgAudio');
 
-            audio.volume = 0.1;
+            audio.volume = volumeSlider.value;;
             audio.src = src;
             audio.load();
             audio.play();
