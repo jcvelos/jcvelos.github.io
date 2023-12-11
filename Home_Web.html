@@ -233,12 +233,23 @@ footer {
     }, 1000); // Delay in milliseconds before transition (adjust as needed)
   }
 
-    const audio = document.getElementById('bgAudio');
-    audio.volume = 0.1;
+    window.onload = function() {
+        const audio = document.getElementById('bgAudio');
+        audio.volume = 0.1; 
 
-    function playAudio() {
-        audio.play();
+        setTimeout(function() {
+            audio.play(); 
+        }, 2000); 
+
+        const blackBg = document.getElementById('blackBg');
+        const mainContent = document.getElementById('mainContent');
+
+        setTimeout(function() {
+            blackBg.style.opacity = '0';
+            mainContent.classList.add('show');
+        }, 1000); 
     }
+</script>
 </script>
 
 </head>
@@ -328,7 +339,7 @@ footer {
           <p>All of this is still a Work in Progrees so please do understand that I am doing this with the help of ChatGPT but by no means do I let it do all the work. This is merely a record of my progress for improving the webpage, making it more fun and interactive. If you ever find this, please do message me for improvements that I can do, as well as some advice to make this webpage more appealing...</p>
         </footer>
     
-    <audio id="bgAudio" loop autoplay>
+    <audio id="bgAudio" loop>
         <source src="HomePageMusic.mp3" type="audio/mpeg">
     </audio>
   </div>
