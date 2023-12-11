@@ -212,7 +212,7 @@
             position: relative;
             display: inline-block;
         }
-
+    
         .link-icons {
             position: absolute;
             top: 50%;
@@ -225,11 +225,11 @@
             border-radius: 5px;
             box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
         }
-
+    
         .link-hover-area:hover .link-icons {
             opacity: 1;
         }
-
+    
         .link-icons i {
             display: block;
             margin-bottom: 5px;
@@ -244,7 +244,7 @@
             font-size: 11px;
             position: relative; 
             top: 0; 
-            margin: 20px auto;
+            margin: auto;
             text-align: left; 
             padding: 10px; 
         }
@@ -264,6 +264,7 @@
         right: 0;
         margin-bottom: 50px;
     }
+        
     </style>
 </head>
 <body>
@@ -279,7 +280,7 @@
             <div class="volume-control">
                 <i class="fas fa-volume" onclick="toggleVolume()"></i>
                 <div class="volume-slider">
-                    <input type="range" min="0.05" max="1" step="0.05" value="0.1" id="volumeSlider" onchange="adjustVolume()">
+                    <input type="range" min="0.05" max="1" step="0.1" value="0.1" id="volumeSlider" onchange="adjustVolume()">
                 </div>
             </div>
         </div>
@@ -317,6 +318,11 @@
     </audio>
 
     <script>
+        window.onload = function() {
+            const bgAudio = document.getElementById('bgAudio');
+            bgAudio.volume = 0.1; // Set the volume to 0.1 when the page loads
+        };
+        
         let isMuted = false;
 
         function adjustVolume() {
