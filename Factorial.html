@@ -272,6 +272,19 @@
             document.getElementById("sum").innerText = "";
             document.getElementById("average").innerText = "";
         }
+
+        const audio = document.getElementById('bgAudio');
+        delayAudio(1000); 
+        
+        function delayAudio(delayTime) {
+            audio.pause(); 
+            audio.volume=0.1;
+        
+            setTimeout(function() {
+                audio.play();
+            }, delayTime);
+        }
+
     </script>
 </body>
 </html>
