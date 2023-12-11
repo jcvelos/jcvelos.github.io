@@ -233,17 +233,12 @@ footer {
     }, 1000); // Delay in milliseconds before transition (adjust as needed)
   }
 
-  function delayAudio(delayTime) {
-            const audio = document.getElementById('bgAudio');
-            audio.pause();
-            audio.volume = 0.1;
-    
-            setTimeout(function() {
-                audio.play();
-            }, delayTime);
-        }
-    
-      delayAudio(3000);
+    const audio = document.getElementById('bgAudio');
+    audio.volume = 0.1;
+
+    function playAudio() {
+        audio.play();
+    }
 </script>
 
 </head>
