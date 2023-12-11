@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body {font-family: Garamond;}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -30,7 +29,7 @@
 /* Styles for the main content with background image */
 #mainContent {
   margin: 0;
-  background-image: url('clouds.gif');
+  background-image: url('https://i.imgur.com/23mLijX.gif');
   background-size: cover;
   display: flex;
   flex-direction: column; /* Set content in a column layout */
@@ -53,7 +52,7 @@
 }
 
 .header {
-  background-image: url('galaxy.gif');
+  background-image: url('https://i.imgur.com/LaeUwrM.gif');
   background-size: cover; /* Ensures the image covers the entire background */
   background-position: center; /* Centers the background image */
   display: flex-wrap;
@@ -99,10 +98,11 @@ footer {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #7F00FF;
-  color: pink;
+  background-color: violet;
+  color: black;
   border-radius: 50%;
   transition: ease 0.5s;
+  box-shadow: 0 0 10px 3px #888;
 }
 
 .row {
@@ -161,7 +161,6 @@ footer {
 
 .column.side .with-submenu:hover .sub-menu {
   display: inline-block;
-  transition: ease 1s;
 }
 
 /* Clear floats after the columns */
@@ -176,9 +175,14 @@ footer {
 }
 
 .right-links {
-  width: auto; /* Change width to auto */
+  width: auto; 
   display: flex;
 }
+
+.row {
+  overflow-x: auto;
+}
+</style>
 
 </style>
 <script>
