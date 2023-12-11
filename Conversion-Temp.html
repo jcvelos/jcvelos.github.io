@@ -375,6 +375,19 @@
             document.getElementById("inputValue1").value = "";
             document.getElementById("result1").innerHTML = "";
         }
+
+        const audio = document.getElementById('bgAudio');
+        delayAudio(1000); 
+        
+        function delayAudio(delayTime) {
+            audio.pause(); 
+            audio.volume=0.1;
+        
+            setTimeout(function() {
+                audio.play();
+            }, delayTime);
+        }
+
     </script>
 </body>
 </html>
