@@ -242,11 +242,11 @@
             max-width: 270px;
             overflow-wrap: break-word;
             font-size: 11px;
-            position: relative;
-            top: 0;
-            margin: auto; /* Adjust the margin to reposition the instructions */
-            text-align: left;
-            padding: 10px;
+            position: relative; 
+            top: 0; 
+            margin: auto;
+            text-align: left; 
+            padding: 10px; 
         }
 
         .instructions h4 {
@@ -360,41 +360,31 @@
         function fallingBox() {
             var name = document.getElementById("fname").value.toLowerCase();
             var box = document.getElementById("falling-box");
-            var audioSource = '';
-        
+
             document.getElementById("MSG").innerHTML = '';
             document.getElementById("MSG").classList.add("hidden");
-        
-            setTimeout(function () {
-                document.getElementById("MSG").innerHTML = name + ', I have music for you, here!';
+
+            setTimeout(function() {
+                document.getElementById("MSG").innerHTML = name + ', I have a music for you, here!';
                 document.getElementById("MSG").classList.remove("hidden");
-        
+
                 box.style.display = "block";
                 box.classList.add("animate");
-        
-                switch (name) {
-                    case 'jc':
-                        audioSource = 'Velos.mp3';
-                        break;
-                    case 'jesiah':
-                        audioSource = 'Jesiah.mp3';
-                        break;
-                    case 'godffrey':
-                        audioSource = 'Godffrey.mp3';
-                        break;
-                    case 'dreame':
-                        audioSource = 'Dreame.mp3';
-                        break;
-                    case 'roy':
-                        audioSource = 'Roy.mp3';
-                        break;
-                    default:
-                        audioSource = 'BgMusic.mp3';
-                        break;
+
+                if (name.includes('jc')) {
+                    playBackgroundAudio('Velos.mp3');
+                } else if (name.includes('Jesiah')) {
+                    playBackgroundAudio('Jesiah.mp3');
+                } else if (name.includes('Godffrey')) {
+                    playBackgroundAudio('Godffrey.mp3');
+                } else if (name.includes('Dreame')) {
+                    playBackgroundAudio('Dreame.mp3');
+                } else if (name.includes('Roy')){
+                    playBackgroundAudio('Roy.mp3');
+                } else {
+                    playBackgroundAudio('BgMusic.mp3');
                 }
-        
-                playBackgroundAudio(audioSource);
-            }, 750);
+            }, 750); 
         }
 
         function reset() {
