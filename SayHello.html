@@ -244,7 +244,7 @@
             font-size: 11px;
             position: relative; 
             top: 0; 
-            margin: auto;
+            margin: 0 auto;
             text-align: left; 
             padding: 10px; 
         }
@@ -279,7 +279,7 @@
             <div class="volume-control">
                 <i class="fas fa-volume" onclick="toggleVolume()"></i>
                 <div class="volume-slider">
-                    <input type="range" min="0.05" max="1" step="0.05" value="0.1" id="volumeSlider" onchange="adjustVolume()">
+                    <input type="range" min="0" max="1" step="0.1" value="0.1" id="volumeSlider" onchange="adjustVolume()">
                 </div>
             </div>
         </div>
@@ -322,11 +322,8 @@
         function adjustVolume() {
             const volumeSlider = document.getElementById('volumeSlider');
             const bgAudio = document.getElementById('bgAudio');
-             if (volumeSlider.value == 0) {
-                bgAudio.volume = 0.1;
-             } else {
-            bgAudio.volume = volumeSlider.value;
-                }
+            if (!isMuted) {
+                bgAudio.volume = volumeSlider.value;
             }
         }
 
@@ -363,40 +360,31 @@
         function fallingBox() {
             var name = document.getElementById("fname").value.toLowerCase();
             var box = document.getElementById("falling-box");
-            var audioSource = '';
-        
+
             document.getElementById("MSG").innerHTML = '';
             document.getElementById("MSG").classList.add("hidden");
-        
-            setTimeout(function () {
-                document.getElementById("MSG").innerHTML = name + ', I have music for you, here!';
-                document.getElementById("MSG").classList.remove("hidden');
-        
+
+            setTimeout(function() {
+                document.getElementById("MSG").innerHTML = name + ', I have a music for you, here!';
+                document.getElementById("MSG").classList.remove("hidden");
+
                 box.style.display = "block";
                 box.classList.add("animate");
-        
-                switch (name) {
-                    case 'jc':
-                        audioSource = 'Velos.mp3';
-                        break;
-                    case 'jesiah':
-                        audioSource = 'Jesiah.mp3';
-                        break;
-                    case 'godffrey':
-                        audioSource = 'Godffrey.mp3';
-                        break;
-                    case 'dreame':
-                        audioSource = 'Dreame.mp3';
-                        break;
-                    case 'roy':
-                        audioSource = 'Roy.mp3';
-                        break;
-                    default:
-                        audioSource = 'BgMusic.mp3';
-                        break;
+
+                if (name.includes('jc')) {
+                    playBackgroundAudio('Velos.mp3');
+                } else if (name.includes('Jesiah')) {
+                    playBackgroundAudio('Jesiah.mp3');
+                } else if (name.includes('Godffrey')) {
+                    playBackgroundAudio('Godffrey.mp3');
+                } else if (name.includes('Dreame')) {
+                    playBackgroundAudio('Dreame.mp3');
+                } else if (name.includes('Roy')){
+                    playBackgroundAudio('Roy.mp3');
+                } else {
+                    playBackgroundAudio('BgMusic.mp3');
                 }
-                playBackgroundAudio(audioSource);
-            }, 750);
+            }, 750); 
         }
 
         function reset() {
