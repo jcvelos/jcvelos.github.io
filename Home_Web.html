@@ -186,15 +186,16 @@ footer {
     const blackBg = document.getElementById('blackBg');
     const mainContent = document.getElementById('mainContent');
     const bgMusic = document.getElementById('bgMusic');
-
+  
     setTimeout(function() {
       blackBg.style.opacity = '0';
       mainContent.classList.add('show');
       setTimeout(function() {
         bgMusic.play();
+        volume = 0.1;
       }, 2000); 
     }, 1000); 
-  }
+  };
 </script>
 </head>
 <body>
