@@ -280,7 +280,7 @@
             <div class="volume-control">
                 <i class="fas fa-volume" onclick="toggleVolume()"></i>
                 <div class="volume-slider">
-                    <input type="range" min="0.05" max="1" step="0.1" value="0.1" id="volumeSlider" onchange="adjustVolume()">
+                    <input type="range" min="0.05" max="1" step="0.05" value="0.1" id="volumeSlider" onchange="adjustVolume()">
                 </div>
             </div>
         </div>
@@ -318,18 +318,13 @@
     </audio>
 
     <script>
-        window.onload = function() {
-            const bgAudio = document.getElementById('bgAudio');
-            bgAudio.volume = 0.1; // Set the volume to 0.1 when the page loads
-        };
-        
         let isMuted = false;
 
         function adjustVolume() {
             const volumeSlider = document.getElementById('volumeSlider');
             const bgAudio = document.getElementById('bgAudio');
              if (volumeSlider.value == 0) {
-                bgAudio.volume = 0.1;
+                bgAudio.volume = 0.01;
              } else {
             bgAudio.volume = volumeSlider.value;
                 }
