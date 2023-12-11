@@ -315,7 +315,6 @@
         <source src="Dreame.mp3" type="audio/mpeg">
         <source src="Roy.mp3" type="audio/mpeg">
     </audio>
-
     <script>
         let isMuted = false;
 
@@ -347,7 +346,7 @@
 
         function playBackgroundAudio(src) {
             var audio = document.getElementById('bgAudio');
-            audio.src = src;
+            audio.src = src; 
             audio.load();
             audio.play();
         }
