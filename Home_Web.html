@@ -1,208 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Welcome to Veemo's Play Page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-    }
+<title>Welcome to Veemo's Play Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
 
-    #blackBg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 1;
-      z-index: 2;
-      transition: opacity 2s ease;
-      pointer-events: none;
-    }
+#blackBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  z-index: 2;
+  transition: opacity 2s ease;
+  pointer-events: none;
+}
 
-    /* Styles for the main content with background image */
-    #mainContent {
-      margin: 0;
-      background-image: url('clouds.gif');
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      font-family: 'Garamond';
-      text-align: center;
-      font-size: 15px;
-      position: relative;
-      opacity: 0;
-      z-index: 1;
-      transition: opacity 2s ease;
-      visibility: hidden;
-      pointer-events: none;
-    }
+/* Styles for the main content with background image */
+#mainContent {
+  margin: 0;
+  background-image: url('https://i.imgur.com/23mLijX.gif');
+  background-size: cover;
+  display: flex;
+  flex-direction: column; /* Set content in a column layout */
+  height: 100vh;
+  font-family: 'Garamond';
+  text-align: center;
+  font-size: 15px;
+  position: relative;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 2s ease;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-    #mainContent.show {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
+#mainContent.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
-    .header {
-      background-image: url('galaxy.dif');
-      background-size: cover;
-      background-position: center;
-      display: flex-wrap;
-      padding: 10px;
-      position: relative;
-      text-align: center;
-      color: pink;
-    }
+.header {
+  background-image: url('https://i.imgur.com/LaeUwrM.gif');
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the background image */
+  display: flex-wrap;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  color: pink;
+}
 
-    /* Style the header */
-    footer {
+/* Style the header */
+footer {
       position: fixed;
       font: gothic;
       font-size: 13px;
       bottom: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 1);
+      background-color: rgba(0, 0, 0, 1); /* Adjust the background color and opacity */
       color: pink;
       padding: 10px;
       text-align: justify-content;
     }
 
-    /* Style the top navigation bar */
-    .topnav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.5);
-      overflow-x: auto;
-    }
+/* Style the top navigation bar */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  overflow-x: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
 
-    /* Style the topnav links */
-    .topnav a {
-      display: inline-block;
-      color: violet;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 25px;
-      margin: 0 5px;
-    }
+/* Style the topnav links */
+.topnav a {
+  display: inline-block;
+  color: violet;
+  text-align: center;
+  padding: 10px 11px;
+  text-decoration: none;
+}
 
-    /* Change color on hover */
-    .topnav a:hover {
-      background-color: violet;
-      color: black;
-      transition: ease 0.5s;
-      box-shadow: 0 0 10px 3px #888;
-    }
+/* Change color on hover */
+.topnav a:hover {
+  background-color: violet;
+  color: black;
+  border-radius: 50%;
+  transition: ease 0.5s;
+  box-shadow: 0 0 10px 3px #888;
+}
 
-    .row {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      overflow-x: auto;
-    }
+.row {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping to fit columns together */
+  justify-content: space-between;
+}
 
-    /* Adjust the width and margins for the side columns */
-    .column.side {
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-      color: pink;
-      border: 2px solid violet;
-      background-color: rgba(0, 0, 0, 0.5);
-      margin: 10px;
-      padding: 10px;
-    }
+/* Adjust the width and margins for the side columns */
+.column.side {
+  flex: 0 0 auto; /* Fixed width for the side columns */
+  width: 200px; /* Adjust the width as needed */
+  text-align: center;
+  color: pink;
+  border: 2px solid violet;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 10px;
+}
 
-    /* Middle column */
-    .column.middle {
-      flex: 2;
-      padding: 30px;
-      color: yellow;
-    }
+/* Middle column */
+.column.middle {
+  margin: auto; 
+  flex: 2; /* Added flex property to make it take more space than the side columns */
+  padding: 50px;
+  color: yellow; /* Adjust text color for better visibility */
+}
 
-    /* Style the side nav links */
-    .column.side a {
-      display: block;
-      color: pink;
-      padding: 8px 10px;
-      text-decoration: none;
-    }
+/* Style the side nav links */
+.column.side a {
+  display: block;
+  color: pink;
+  padding: 8px 10px;
+  text-decoration: none;
+}
 
-    /* Change color on hover */
-    .column.side a:hover {
-      background-color: rgba(128, 128, 128, 0.5);
-      border-radius: 0;
-      transition: ease 0.5s;
-    }
+/* Change color on hover */
+.column.side a:hover {
+  background-color: rgba(128, 128, 128, 0.5); /* Grey background with 50% opacity */
+  border-radius: 0; /* Remove border-radius */
+  transition: ease 0.5s;
+}
 
-    .column.side .with-submenu {
-      position: relative;
-      color: pink;
-    }
+.column.side .with-submenu {
+  position: relative;
+  color: pink;
+}
 
-    .column.side .with-submenu .sub-menu {
-      display: none;
-      position: relative;
-      top: 100%;
-      left: 0;
-      background-color: rgba(128, 128, 128, 0.5);
-      padding: 5px;
-    }
+.column.side .with-submenu .sub-menu {
+  display: none;
+  position: relative;
+  top: 100%;
+  left: 0;
+  background-color: rgba(128, 128, 128, 0.5);
+  padding: 5px;
+}
 
-    .column.side .with-submenu:hover .sub-menu {
-      display: inline-block;
-    }
+.column.side .with-submenu:hover .sub-menu {
+  display: inline-block;
+}
 
-    /* Clear floats after the columns */
-    .row::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-    .left-links {
-      order: -1;
-    }
+.left-links {
+  order: -1;
+}
 
-    .right-links {
-      width: auto; 
-      display: flex;
-    }
+.right-links {
+  width: auto; /* Change width to auto */
+  display: flex;
+}
 
-    .row {
-      overflow-x: auto;
-    }
-  </style>
-  <script>
-    window.onload = function() {
-      const blackBg = document.getElementById('blackBg');
-      const mainContent = document.getElementById('mainContent');
-      const bgMusic = document.getElementById('bgMusic');
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (min-width: 601px) {
+  .row {
+    flex-direction: row; /* Display columns in a row layout */
+  }
+}
 
-      setTimeout(function() {
-        blackBg.style.opacity = '0';
-        mainContent.classList.add('show');
-        setTimeout(function() {
-          bgMusic.play();
-          volume = 0.1;
-        }, 2000); 
-      }, 1000); 
-    };
-  </script>
+/* Phone screens (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  /* Adjustments for smaller screens */
+  .row {
+    flex-direction: column; /* Display columns in a single column layout */
+  }
+
+  /* Ensure all columns take full width on smaller screens */
+  .column.side,
+  .column.middle {
+    width: 100%;
+    margin: 5px 0; /* Adjusted margin for smaller screens */
+  }
+
+  /* Ensure the side and middle columns maintain their widths */
+  .column.side {
+    width: 100%;
+  }
+
+  .column.middle {
+    width: 100%;
+  }
+}
+
+/* Add scrollbar to the content */
+.row {
+  overflow-x: auto;
+}
+</style>
+
+<script>
+  window.onload = function() {
+    const blackBg = document.getElementById('blackBg');
+    const mainContent = document.getElementById('mainContent');
+
+    setTimeout(function() {
+      blackBg.style.opacity = '0';
+      mainContent.classList.add('show');
+    }, 1000); // Delay in milliseconds before transition (adjust as needed)
+  }
+</script>
+
 </head>
 <body>
-  <audio id="bgMusic" autoplay loop volume="0.1">
-    <source src="HomePageMusic.mp3" type="audio/mpeg">
-  </audio>
   <!-- Black background -->
   <div id="blackBg">
     <!-- Loading content -->
@@ -218,12 +245,14 @@
 
     <!-- Top navigation -->
     <div class="topnav">
+
       <div class="left-links">
         <a href="index.html">Home</a>
       </div>
       <div class="right-links">
         <a href="Settings.html">Settings</a>
       </div>
+
     </div>
 
     <!-- Content -->
@@ -247,7 +276,7 @@
           </div>
         </div>
       </div>
-
+        
       <div class="column middle">
         <h2>Welcome to Veemo's Play Page</h2>
         <h3>Introduction to the Website</h3>
@@ -264,22 +293,23 @@
           <p>Note: There is music on each link you visit, so I highly recommend lowering your PC volume so that it will not be an inconvenience. Thank you for looking at my website and have fun!</p>
         </div>
       </div>
-
-      <div class="column side">
-        <h2>More Info</h2>
+        
+      <div class="column side" style="width: 300px;">
+        <h2>More Info</h2><br>
         <div>
-          <img src="Profile.jpg" alt="Your Image" style="width: 100%; max-width: 150px; border-radius: 25%; border: solid 3px violet;">
-          <h3> Designer</h3>
-          <p>John Carl Velos</p>
-          <p> ADDU BS-IT Student </p>
-          <p>Likes: Coding, Drawing, and Animating</p>
-          <p>Dislikes: Sad stuff, Eating (Braces on)</p>
+        <img src="https://i.imgur.com/RRV5kl4.jpg" alt="Your Image" style="width: 100%; max-width: 150px; border-radius: 25%; border: solid 3px violet;">
+        <h3> Designer</h3>
+        <p>John Carl Velos</p><br>
+        <p> ADDU BS-IT Student </p><br>
+        <p>Likes: Coding, Drawing,</p>
+        <p>and Animating</p><br>
+        <p>Dislikes: Sad stuff, Eating(Braces on)</p>
         </div>
       </div>
     </div>
-    <footer>
-      <p>All of this is still a work in progress so please understand that I am doing this with the help of ChatGPT, but by no means do I let it do all the work. This is merely a record of my progress for improving the webpage, making it more fun and interactive. If you ever find this, please do message me for improvements that I can do, as well as some advice to make this webpage more appealing...</p>
-    </footer>
+        <footer>
+          <p>All of this is still a Work in Progrees so please do understand that I am doing this with the help of ChatGPT but by no means do I let it do all the work. This is merely a record of my progress for improving the webpage, making it more fun and interactive. If you ever find this, please do message me for improvements that I can do, as well as some advice to make this webpage more appealing...</p>
+        </footer>
   </div>
 </body>
 </html>
