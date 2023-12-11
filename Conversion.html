@@ -240,7 +240,7 @@
         <div class="result-box" id="resultTemp" style="margin-bottom: 50px;"></div>
     </div>
 
-    <audio id="bgAudio" loop autoplay volume="0.1">
+    <audio id="bgAudio" loop autoplay>
         <source src="BgMusic.mp3" type="audio/mpeg">
     </audio>
 
@@ -286,6 +286,19 @@
             document.getElementById("inputValue1").value = "";
             document.getElementById("resultTemp").innerHTML = "";
         }
+
+        const audio = document.getElementById('bgAudio');
+        delayAudio(1000); 
+        
+        function delayAudio(delayTime) {
+            audio.pause(); 
+            audio.volume=0.1;
+        
+            setTimeout(function() {
+                audio.play();
+            }, delayTime);
+        }
+
     </script>
 </body>
 </html>
