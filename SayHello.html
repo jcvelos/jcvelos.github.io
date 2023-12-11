@@ -16,8 +16,8 @@
             background-image: url("Forest.png");
             background-size: cover;
             background-position: center;
-        }
 
+        }
         .door-frame {
             margin: auto;
             transform: translate(0, 154%);
@@ -37,6 +37,7 @@
             text-align: center;
             color: black;
             margin-bottom: 30px;
+            justify-content: space-between;  
             animation: wave 20s infinite linear;
         }
 
@@ -157,7 +158,13 @@
             top: 10px;
             left: 10px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
             font-size: 24px;
+        }
+
+        .settings-menu {
+            margin-right: 10px;
         }
 
         .settings-options {
@@ -230,19 +237,55 @@
             color: black;
             cursor: pointer;
         }
+
+        .instructions {
+            max-width: 270px;
+            overflow-wrap: break-word;
+            font-size: 11px;
+            position: relative; 
+            top: 0; 
+            margin: 0 auto;
+            text-align: left; 
+            padding: 10px; 
+        }
+
+        .instructions h4 {
+            text-align: center;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+        }
+
+        #volumeSlider {
+        position: fixed; 
+        top: 17px;
+        right: 0;
+        margin-bottom: 50px;
+    }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="settings">
-            <i class="fas fa-bars"></i>
-            <div class="settings-options">
-                <i class="fas fa-home" onclick="location.href='index.html'"></i>
-                <i class="fas fa-cogs" onclick="location.href='Home_Web.html'"></i>
+            <div class="settings-menu">
+                <i class="fas fa-bars"></i>
+                <div class="settings-options">
+                    <i class="fas fa-home" onclick="location.href='index.html'"></i>
+                    <i class="fas fa-cogs" onclick="location.href='Home_Web.html'"></i>
+                </div>
+            </div>
+            <div class="volume-control">
+                <i class="fas fa-volume" onclick="toggleVolume()"></i>
+                <div class="volume-slider">
+                    <input type="range" min="0" max="1" step="0.1" value="0.1" id="volumeSlider" onchange="adjustVolume()">
+                </div>
             </div>
         </div>
         <h1>Say Hello</h1>
     </div>
+
     <div class="door-frame">
         <label for="fname">What is your name:</label><br>
         <input type="text" id="fname"><br>
@@ -255,32 +298,62 @@
                 <p id="MSG" class="hidden"></p>
             </div>
         </div>
-        <h4>How to use JC's Say Hello</h4>
-        <div style="max-width: 270px; overflow-wrap: break-word; font-size: 11px; margin-left: 15px;">
+        <div class="instructions">
+                <h4>How to use JC's Say Hello</h4>
                 <p>1. Type in your name. Click the "Click Me For a Surprise" button. Each name corresponds to certain songs. Try jc, dreame, godffrey, jesiah and roy.</p>
                 <p>2. Once the Animation is done click the undo button to reset the animation.</p>
                 <p>Note: The name Roy pauses the entire background music.</p>
         </div>
     </div>
 
-     <audio id="bgAudio" loop autoplay volume="0.1">
-        <source src="HomePageMusic.mp3" type="audio/mpeg"> 
-    </audio>
-    <audio id="bgAudio1" loop volume="0.1">
+     <audio id="bgAudio" loop autoplay>
+        <source src="HomePageMusic.mp3" type="audio/mpeg">
+    <audio id="bgAudio1" loop>
         <source src="Velos.mp3" type="audio/mpeg"> 
         <source src="Jesiah.mp3" type="audio/mpeg"> 
         <source src="Godffrey.mp3" type="audio/mpeg">
-        <source src="Dreame.mp3" type="audio/mpeg">
         <source src="Roy.mp3" type="audio/mpeg">
     </audio>
-    
+
     <script>
-       function playBackgroundAudio(src) {
+        let isMuted = false;
+
+        function adjustVolume() {
+            const volumeSlider = document.getElementById('volumeSlider');
+            const bgAudio = document.getElementById('bgAudio');
+            if (!isMuted) {
+                bgAudio.volume = volumeSlider.value;
+            }
+        }
+
+        function toggleVolume() {
+            const volumeIcon = document.querySelector('.fa-volume');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const bgAudio = document.getElementById('bgAudio');
+            isMuted = !isMuted;
+
+            if (isMuted) {
+                volumeIcon.classList.remove('fa-volume-up');
+                volumeIcon.classList.add('fa-volume-mute');
+                bgAudio.volume = 0;
+                volumeSlider.value = 0;
+            } else {
+                volumeIcon.classList.remove('fa-volume-mute');
+                volumeIcon.classList.add('fa-volume-up');
+                bgAudio.volume = volumeSlider.value;
+            }
+        }
+
+        function playBackgroundAudio(src) {
             var audio = document.getElementById('bgAudio');
             audio.src = src;
             audio.load();
             audio.play();
-            audio.volume= 0.1;
+        }
+
+        function stopBackgroundAudio() {
+            var audio = document.getElementById('bgAudio');
+            audio.pause();
         }
 
         function fallingBox() {
@@ -291,7 +364,7 @@
             document.getElementById("MSG").classList.add("hidden");
 
             setTimeout(function() {
-                document.getElementById("MSG").innerHTML = name + ', I am pleased to meet you!';
+                document.getElementById("MSG").innerHTML = name + ', I have a music for you, here!';
                 document.getElementById("MSG").classList.remove("hidden");
 
                 box.style.display = "block";
@@ -299,18 +372,16 @@
 
                 if (name.includes('jc')) {
                     playBackgroundAudio('Velos.mp3');
-                } else if (name.includes('jesiah')) {
+                } else if (name.includes('Jesiah')) {
                     playBackgroundAudio('Jesiah.mp3');
-                } else if (name.includes('godffrey')) {
+                } else if (name.includes('Godffrey')) {
                     playBackgroundAudio('Godffrey.mp3');
-                } else if (name.includes('dreame')) {
-                    playBackgroundAudio('Dreame.mp3');
-                } else if (name.includes('roy')){
+                } else if (name.includes('Roy')){
                     playBackgroundAudio('Roy.mp3');
                 } else {
                     playBackgroundAudio('BgMusic.mp3');
                 }
-            }, 1000); 
+            }, 750); 
         }
 
         function reset() {
