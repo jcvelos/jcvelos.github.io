@@ -322,10 +322,11 @@
         function adjustVolume() {
             const volumeSlider = document.getElementById('volumeSlider');
             const bgAudio = document.getElementById('bgAudio');
-            if (!isMuted) {
-                bgAudio.volume = volumeSlider.value;
-            } else {
-                bgAudio.volume = 0.05;
+             if (volumeSlider.value == 0) {
+                bgAudio.volume = 0.1;
+             } else {
+            bgAudio.volume = volumeSlider.value;
+                }
             }
         }
 
