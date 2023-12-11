@@ -326,7 +326,7 @@
         <div id="MSG"></div>
     </div>
 
-    <audio id="bgAudio" loop autoplay volume="0.1">
+    <audio id="bgAudio" loop autoplay>
         <source src="BgMusic.mp3" type="audio/mpeg">
     </audio>
 
@@ -378,11 +378,11 @@
         }
         
         const audio = document.getElementById('bgAudio');
-        delayAudio(3000); 
+        delayAudio(1000); 
         
         function delayAudio(delayTime) {
             audio.pause(); 
-            audio.volume=0.01;
+            audio.volume=0.1;
         
             setTimeout(function() {
                 audio.play();
