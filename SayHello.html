@@ -212,7 +212,7 @@
             position: relative;
             display: inline-block;
         }
-    
+
         .link-icons {
             position: absolute;
             top: 50%;
@@ -225,11 +225,11 @@
             border-radius: 5px;
             box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
         }
-    
+
         .link-hover-area:hover .link-icons {
             opacity: 1;
         }
-    
+
         .link-icons i {
             display: block;
             margin-bottom: 5px;
@@ -242,11 +242,11 @@
             max-width: 270px;
             overflow-wrap: break-word;
             font-size: 11px;
-            position: relative; 
-            top: 0; 
-            margin: auto;
-            text-align: left; 
-            padding: 10px; 
+            position: relative;
+            top: 0;
+            margin: auto; /* Adjust the margin to reposition the instructions */
+            text-align: left;
+            padding: 10px;
         }
 
         .instructions h4 {
@@ -264,7 +264,6 @@
         right: 0;
         margin-bottom: 50px;
     }
-        
     </style>
 </head>
 <body>
@@ -280,7 +279,7 @@
             <div class="volume-control">
                 <i class="fas fa-volume" onclick="toggleVolume()"></i>
                 <div class="volume-slider">
-                    <input type="range" min="0.1" max="1" step="0.05" value="0.1" id="volumeSlider" onchange="adjustVolume()">
+                    <input type="range" min="0" max="1" step="0.1" value="0.1" id="volumeSlider" onchange="adjustVolume()">
                 </div>
             </div>
         </div>
@@ -307,7 +306,7 @@
         </div>
     </div>
 
-     <audio id="bgAudio" loop autoplay volume=0.1;>
+     <audio id="bgAudio" loop autoplay>
         <source src="HomePageMusic.mp3" type="audio/mpeg">
     <audio id="bgAudio1" loop>
         <source src="Velos.mp3" type="audio/mpeg"> 
@@ -323,9 +322,7 @@
         function adjustVolume() {
             const volumeSlider = document.getElementById('volumeSlider');
             const bgAudio = document.getElementById('bgAudio');
-            if (volumeSlider.value == 0) {
-                bgAudio.volume = 0.01;
-            } else {
+            if (!isMuted) {
                 bgAudio.volume = volumeSlider.value;
             }
         }
@@ -395,6 +392,7 @@
                         audioSource = 'BgMusic.mp3';
                         break;
                 }
+        
                 playBackgroundAudio(audioSource);
             }, 750);
         }
@@ -409,5 +407,3 @@
     </script>
 </body>
 </html>
-
-
